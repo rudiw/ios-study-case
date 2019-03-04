@@ -71,6 +71,9 @@
                                                         <state key="normal" title="Sign In">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="btnSignInPressed:" destination="sIg-Df-CPB" eventType="touchUpInside" id="qf6-0e-IGC"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
