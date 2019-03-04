@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4ABBE697AE9D2E4ADE01FF8F /* Pods_Study_Case.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED4836D2E7E84E976CC2035A /* Pods_Study_Case.framework */; };
 		B08819D6222CEFA4005E460B /* VCLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08819D5222CEFA4005E460B /* VCLogin.swift */; };
+		B08819D8222D0218005E460B /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08819D7222D0218005E460B /* AppUtils.swift */; };
 		B0D1C3D92223D58E00FD2D1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D1C3D82223D58E00FD2D1F /* AppDelegate.swift */; };
 		B0D1C3DB2223D58E00FD2D1F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D1C3DA2223D58E00FD2D1F /* ViewController.swift */; };
 		B0D1C3DE2223D58E00FD2D1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0D1C3DC2223D58E00FD2D1F /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		7EA2D7A51F756155885C18DB /* Pods-Study Case.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Study Case.debug.xcconfig"; path = "Target Support Files/Pods-Study Case/Pods-Study Case.debug.xcconfig"; sourceTree = "<group>"; };
 		B08819D5222CEFA4005E460B /* VCLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCLogin.swift; sourceTree = "<group>"; };
+		B08819D7222D0218005E460B /* AppUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		B0D1C3D52223D58E00FD2D1F /* Study Case.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Study Case.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0D1C3D82223D58E00FD2D1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0D1C3DA2223D58E00FD2D1F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				B0D1C3D82223D58E00FD2D1F /* AppDelegate.swift */,
 				B0D1C3DA2223D58E00FD2D1F /* ViewController.swift */,
 				B08819D5222CEFA4005E460B /* VCLogin.swift */,
+				B08819D7222D0218005E460B /* AppUtils.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B08819D8222D0218005E460B /* AppUtils.swift in Sources */,
 				B0D1C3DB2223D58E00FD2D1F /* ViewController.swift in Sources */,
 				B0D1C3FA2223DAA000FD2D1F /* Dummy.swift in Sources */,
 				B08819D6222CEFA4005E460B /* VCLogin.swift in Sources */,
