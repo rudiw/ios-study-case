@@ -90,27 +90,54 @@ class VCLogin: UIViewController, UITextFieldDelegate {
             return;
         }
         
-//        let parameters: Parameters = [
-//            "foo": [1,2,3],
-//            "bar": [
-//                "baz": "qux"
-//            ]
-//        ]
-//
-//        SVProgressHUD.show();
-//        Alamofire.request(AppUtils.LOGIN_API, method: .post, parameters: params).responseJSON(completionHandler: {
-//            response in
-//            if (response.result.isSuccess) {
-//                print("Got weather data successfully...");
-//
-//                let weatherJson: JSON = JSON(response.result.value!);
-//                //                print("Got weather data: \(weatherJson)");
-//                self.setWeather(upData: weatherJson);
-//            } else {
-//                print("Can not get weather: \(response.result.error)");
-//                self.cityLabel.text = "Connection Issues";
-//            }
-//        })
+        // email and password are valid, ready to send to the api login
+        hideKeyBoard();
+        
+        let params: Parameters = [
+            "email": email!,
+            "password": password!
+        ]
+        print("Params to sign in: \(params)");
+
+        SVProgressHUD.show();
+        Alamofire.request(AppUtils.LOGIN_API, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON(completionHandler: {
+            response in
+            
+//            print("Response result value: \(response.result.value)");
+            
+            SVProgressHUD.dismiss();
+            
+            if (response.result.isSuccess && response.response?.statusCode == 200) {
+                print("Sign in successfully...");
+
+                let infoLogin: JSON = JSON(response.result.value!);
+                
+                var userSessionMap = AppUtils.USER_SESSION_MAP;
+                userSessionMap[AppUtils.IS_AUTHENTICATED] = true;
+                userSessionMap[AppUtils.USER_EMAIL] = infoLogin["data"]["user"]["email"];
+                userSessionMap[AppUtils.USER_TOKEN] = infoLogin["data"]["token"];
+                
+                UserDefaults.standard.setValue(userSessionMap, forKey: AppUtils.KEY_USER_SESSION)
+                
+                let app = UIApplication.shared.delegate as? AppDelegate;
+                app?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController();
+                
+            } else if (response.result.isSuccess && response.response?.statusCode == 401) {
+                print("Invalid credentials: \(response.result.error)");
+                
+                let alert = UIAlertController(title: "Error", message: "Invalid credentials.", preferredStyle: .alert);
+                let action = UIAlertAction(title: "Ok", style: .default, handler: nil);
+                alert.addAction(action);
+                self.present(alert, animated: true, completion: nil);
+            } else {
+                print("Failed to sign in: \(response.result.error)");
+                
+                let alert = UIAlertController(title: "Error", message: "Please try again latter.", preferredStyle: .alert);
+                let action = UIAlertAction(title: "Ok", style: .default, handler: nil);
+                alert.addAction(action);
+                self.present(alert, animated: true, completion: nil);
+            }
+        })
     }
     
     
