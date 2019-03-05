@@ -133,7 +133,6 @@
                     <navigationItem key="navigationItem" title="Sign In" id="LFC-Da-0xw"/>
                     <connections>
                         <outlet property="btnSignIn" destination="fNo-it-Dpb" id="Qye-17-4KT"/>
-                        <outlet property="heightViewTop" destination="e29-P5-b46" id="Nwj-Yw-dts"/>
                         <outlet property="imgLogo" destination="TWL-4G-ROa" id="bMA-G6-irx"/>
                         <outlet property="lblSignUp" destination="6sO-EY-Upi" id="emU-Hk-pZQ"/>
                         <outlet property="txtEmail" destination="rsT-1H-5SB" id="97C-tH-XAP"/>
@@ -142,6 +141,7 @@
                         <outlet property="viewLogin" destination="LQ9-50-5Kg" id="b1s-c5-fhA"/>
                         <outlet property="viewRegister" destination="06E-Sr-phN" id="2nY-kf-Akb"/>
                         <outlet property="viewTop" destination="PKJ-xP-hFp" id="yRw-v6-xua"/>
+                        <outlet property="viewTopHeight" destination="e29-P5-b46" id="cGB-IY-Zxr"/>
                         <segue destination="6BR-8r-hju" kind="show" identifier="toVcSignUp" id="xdZ-yH-DyT"/>
                     </connections>
                 </viewController>
@@ -243,6 +243,8 @@
                     </view>
                     <connections>
                         <outlet property="btnSignUp" destination="r45-bm-0kO" id="WPj-EC-AHT"/>
+                        <outlet property="heightViewTop" destination="tbC-Nt-qcO" id="2jL-Ho-hQ6"/>
+                        <outlet property="imgLogo" destination="5Km-Mh-o5W" id="hvK-Rd-2O0"/>
                         <outlet property="txtEmail" destination="cde-sc-P4M" id="1mI-Em-Lxf"/>
                         <outlet property="txtName" destination="7Fl-XP-gkL" id="g9Y-mG-M04"/>
                         <outlet property="txtPassword" destination="CPy-pE-fJt" id="bK9-yJ-gjX"/>

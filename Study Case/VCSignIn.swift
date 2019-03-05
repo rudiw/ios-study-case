@@ -21,7 +21,7 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var viewLogin: UIView!
     @IBOutlet weak var viewRegister: UIView!
     
-    @IBOutlet weak var heightViewTop: NSLayoutConstraint!
+    @IBOutlet weak var viewTopHeight: NSLayoutConstraint!
     
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
@@ -30,6 +30,8 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lblSignUp: UILabel!
     
     var colorBg: UIColor = UIColor.randomFlat;
+    
+    var viewLoginHeight: CGFloat = 0.0;
     
     //MARK: - View Did Load
     
@@ -48,17 +50,20 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
         txtEmail.delegate = self;
         txtPassword.delegate = self;
         
-        let tapOnViewTop = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard));
+        let tapOnViewTop = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard));
         viewTop.addGestureRecognizer(tapOnViewTop);
-        let tapOnImgLogo = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard));
+        let tapOnImgLogo = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard));
         imgLogo.addGestureRecognizer(tapOnImgLogo);
-        let tapOnViewBottom = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard));
+        let tapOnViewBottom = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard));
         viewBottom.addGestureRecognizer(tapOnViewBottom);
         
         let tapOnLblSignUp = UITapGestureRecognizer(target: self, action: #selector(showSignUp));
         lblSignUp.isUserInteractionEnabled = true;
         lblSignUp.addGestureRecognizer(tapOnLblSignUp);
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboarWillShow), name: UIResponder.keyboardWillShowNotification, object: nil);
+        
+        viewLoginHeight = viewLogin.frame.height;
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,25 +82,29 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - Update View of Key Board
-    @objc func hideKeyBoard() {
-//        print("hide key board");
-        UIView.animate(withDuration: 0.2) {
-            self.heightViewTop.constant = 0;
+    
+    @objc func keyboarWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue;
+            let keyboardHeight = keyboardRectangle.height;
+            
+            print("keyboarWillShow with height: \(keyboardHeight)");
+            print("viewLoginHeight: \(viewLoginHeight)");
+            
+            self.viewTopHeight.constant = -1 * (keyboardHeight + viewLoginHeight);
             self.view.layoutIfNeeded();
         }
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        print("did begin editing");
+    @objc func hideKeyboard() {
         UIView.animate(withDuration: 0.2) {
-            self.heightViewTop.constant = -310
+            self.viewTopHeight.constant = 0;
             self.view.layoutIfNeeded();
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-//        print("did end editing");
-        hideKeyBoard()
+        hideKeyboard()
     }
     
     // MARK: - Do Sign In
@@ -127,7 +136,7 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
         }
         
         // email and password are valid, ready to send to the api login
-        hideKeyBoard();
+        hideKeyboard();
         
         let params: Parameters = [
             "email": email!,

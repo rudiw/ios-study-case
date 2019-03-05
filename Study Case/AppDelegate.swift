@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        if let userMap = UserDefaults.standard.value(forKey: AppUtils.KEY_USER_SESSION) {
+        if let _ = UserDefaults.standard.value(forKey: AppUtils.KEY_USER_SESSION) {
             //user is authenticated
             self.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController();
         } else {
