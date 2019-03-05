@@ -13,11 +13,13 @@ import SwiftyJSON
 import ChameleonFramework
 
 
-class VCLogin: UIViewController, UITextFieldDelegate {
+class VCSignIn: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var viewTop: UIView!
     @IBOutlet weak var imgLogo: UIImageView!
     @IBOutlet weak var viewBottom: UIView!
+    @IBOutlet weak var viewLogin: UIView!
+    @IBOutlet weak var viewRegister: UIView!
     
     @IBOutlet weak var heightViewTop: NSLayoutConstraint!
     
@@ -27,15 +29,21 @@ class VCLogin: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var lblSignUp: UILabel!
     
+    var colorBg: UIColor = UIColor.randomFlat;
+    
     //MARK: - View Did Load
     
     override func viewDidLoad() {
-        print("view did load");
+        print("VCSignIn | view did load");
         
-        self.view.backgroundColor = UIColor.randomFlat;
-        self.btnSignIn.backgroundColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true);
+        colorBg = UIColor.randomFlat
+        self.view.backgroundColor = colorBg;
+        self.viewTop.backgroundColor = colorBg;
+        self.viewLogin.backgroundColor = colorBg;
+        self.viewRegister.backgroundColor = colorBg;
+        self.btnSignIn.backgroundColor = ContrastColorOf(colorBg, returnFlat: true);
         self.btnSignIn.setTitleColor(ContrastColorOf(self.btnSignIn.backgroundColor!, returnFlat: true), for: .normal);
-        self.lblSignUp.textColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true);
+        self.lblSignUp.textColor = ContrastColorOf(colorBg, returnFlat: true);
         
         txtEmail.delegate = self;
         txtPassword.delegate = self;
@@ -47,6 +55,25 @@ class VCLogin: UIViewController, UITextFieldDelegate {
         let tapOnViewBottom = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard));
         viewBottom.addGestureRecognizer(tapOnViewBottom);
         
+        let tapOnLblSignUp = UITapGestureRecognizer(target: self, action: #selector(showSignUp));
+        lblSignUp.isUserInteractionEnabled = true;
+        lblSignUp.addGestureRecognizer(tapOnLblSignUp);
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateNavBar();
+    }
+    
+    func updateNavBar() {
+        guard let navbar = navigationController?.navigationBar else {
+            fatalError("Navigation controller does not exist");
+        }
+
+        
+        navbar.barTintColor = colorBg;
+        navbar.tintColor = ContrastColorOf(colorBg, returnFlat: true);
+        navbar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : ContrastColorOf(colorBg, returnFlat: true) ]
     }
     
     // MARK: - Update View of Key Board
@@ -152,5 +179,16 @@ class VCLogin: UIViewController, UITextFieldDelegate {
         })
     }
     
+    
+    // MARK: - Show Sign Up Form
+    @objc func showSignUp() {
+        print("Perform seque to sign up...");
+        performSegue(withIdentifier: "toVcSignUp", sender: self);
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vcSignUp = segue.destination as! VCSignUp;
+        vcSignUp.colorBg = colorBg;
+    }
     
 }
