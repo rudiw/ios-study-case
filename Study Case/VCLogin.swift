@@ -97,30 +97,13 @@ class VCLogin: UIViewController, UITextFieldDelegate {
             "email": email!,
             "password": password!
         ]
-        print("Params to sign in: \(params)");
-        
-        if (true) {
-            var userSessionMap = AppUtils.USER_SESSION_MAP;
-            userSessionMap[AppUtils.IS_AUTHENTICATED] = true;
-            userSessionMap[AppUtils.USER_EMAIL] = "dev.email.donotreply@gmail.com"
-            userSessionMap[AppUtils.USER_TOKEN] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRldi5lbWFpbC5kb25vdHJlcGx5QGdtYWlsLmNvbSIsIm5hbWUiOiJEZXZlbG9wbWVudCBQdXJwb3NlIn0.vt2o4hxplRyzTxKBSh4a9D6kURxTIiwlSGwoYG40jMY";
-            
-            UserDefaults.standard.set(userSessionMap, forKey: AppUtils.KEY_USER_SESSION)
-            
-            let app = UIApplication.shared.delegate as? AppDelegate;
-            app?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController();
-            
-            return;
-        }
+//        print("Params to sign in: \(params)");
 
         SVProgressHUD.show();
         Alamofire.request(AppUtils.LOGIN_API, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON(completionHandler: {
             response in
             
 //            print("Response result value: \(response.result.value)");
-            
-            
-            
             SVProgressHUD.dismiss();
             
             if (response.result.isSuccess && response.response?.statusCode == 200) {
@@ -130,8 +113,12 @@ class VCLogin: UIViewController, UITextFieldDelegate {
                 
                 var userSessionMap = AppUtils.USER_SESSION_MAP;
                 userSessionMap[AppUtils.IS_AUTHENTICATED] = true;
-                userSessionMap[AppUtils.USER_EMAIL] = infoLogin["data"]["user"]["email"];
-                userSessionMap[AppUtils.USER_TOKEN] = infoLogin["data"]["token"];
+                let email = infoLogin["data"]["user"]["email"].stringValue;
+                userSessionMap[AppUtils.USER_EMAIL] = email;
+                let token = infoLogin["data"]["token"].stringValue
+                userSessionMap[AppUtils.USER_TOKEN] = token;
+                
+                print("userSessionMap: \(userSessionMap)");
                 
                 UserDefaults.standard.set(userSessionMap, forKey: AppUtils.KEY_USER_SESSION)
                 
