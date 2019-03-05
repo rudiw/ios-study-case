@@ -135,7 +135,7 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
             return;
         }
         
-        // email and password are valid, ready to send to the api login
+        // email and password are valid, ready to send to the api sign in
         hideKeyboard();
         
         let params: Parameters = [
@@ -145,7 +145,7 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
 //        print("Params to sign in: \(params)");
 
         SVProgressHUD.show();
-        Alamofire.request(AppUtils.LOGIN_API, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON(completionHandler: {
+        Alamofire.request(AppUtils.SIGN_IN_API, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON(completionHandler: {
             response in
             
 //            print("Response result value: \(response.result.value)");
@@ -158,10 +158,8 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
                 
                 var userSessionMap = AppUtils.USER_SESSION_MAP;
                 userSessionMap[AppUtils.IS_AUTHENTICATED] = true;
-                let email = infoLogin["data"]["user"]["email"].stringValue;
-                userSessionMap[AppUtils.USER_EMAIL] = email;
-                let token = infoLogin["data"]["token"].stringValue
-                userSessionMap[AppUtils.USER_TOKEN] = token;
+                userSessionMap[AppUtils.USER_EMAIL] = infoLogin["data"]["user"]["email"].stringValue;
+                userSessionMap[AppUtils.USER_TOKEN] = infoLogin["data"]["token"].stringValue;
                 
                 print("userSessionMap: \(userSessionMap)");
                 
@@ -180,12 +178,12 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
             } else {
                 print("Failed to sign in: \(response.result.error)");
                 
-                let alert = UIAlertController(title: "Error", message: "Please try again latter.", preferredStyle: .alert);
+                let alert = UIAlertController(title: "Error", message: "Please try again later.", preferredStyle: .alert);
                 let action = UIAlertAction(title: "Ok", style: .default, handler: nil);
                 alert.addAction(action);
                 self.present(alert, animated: true, completion: nil);
             }
-        })
+        });
     }
     
     

@@ -77,8 +77,8 @@ class VCSignUp: UIViewController, UITextFieldDelegate {
             let keyboardRectangle = keyboardFrame.cgRectValue;
             let keyboardHeight = keyboardRectangle.height;
             
-            print("keyboarWillShow with height: \(keyboardHeight)");
-            print("self.viewBottom.frame.height: \(heightViewBottom)");
+//            print("keyboarWillShow with height: \(keyboardHeight)");
+//            print("self.viewBottom.frame.height: \(heightViewBottom)");
             
             self.heightViewTop.constant = -1 * (keyboardHeight + (keyboardHeight / 3));
             self.view.layoutIfNeeded();
@@ -132,6 +132,57 @@ class VCSignUp: UIViewController, UITextFieldDelegate {
             self.present(alert, animated: true, completion: nil);
             return;
         }
+        
+        // input values are valid, ready to send to the api sign up
+        hideKeyboard();
+        
+        let nameArray = name!.split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true)
+        let firstName = nameArray[0];
+        var lastName = nameArray[0];
+        if (nameArray.count > 1) {
+            lastName = nameArray[1];
+        }
+        
+        let params: Parameters = [
+            "email": email!,
+            "firtsname": firstName,
+            "lastname": lastName,
+            "password": password!
+        ]
+        print("Params to sign in: \(params)");
+        
+        SVProgressHUD.show();
+        Alamofire.request(AppUtils.SIGN_UP_API, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON(completionHandler: {
+            response in
+            
+            //            print("Response result value: \(response.result.value)");
+            SVProgressHUD.dismiss();
+            
+            if (response.result.isSuccess && response.response?.statusCode == 201) {
+                print("Sign up successfully...");
+                
+//                let infoLogin: JSON = JSON(response.result.value!);
+                
+                var userSessionMap = AppUtils.USER_SESSION_MAP;
+                userSessionMap[AppUtils.IS_AUTHENTICATED] = true;
+                userSessionMap[AppUtils.USER_EMAIL] = email;
+                
+                print("userSessionMap: \(userSessionMap)");
+                
+                UserDefaults.standard.set(userSessionMap, forKey: AppUtils.KEY_USER_SESSION)
+                
+                let app = UIApplication.shared.delegate as? AppDelegate;
+                app?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController();
+                
+            } else {
+                print("Failed to sign up: \(response.result)");
+                
+                let alert = UIAlertController(title: "Error", message: "Please try again later.", preferredStyle: .alert);
+                let action = UIAlertAction(title: "Ok", style: .default, handler: nil);
+                alert.addAction(action);
+                self.present(alert, animated: true, completion: nil);
+            }
+        })
     }
     
 }

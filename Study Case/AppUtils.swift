@@ -12,7 +12,8 @@ import Foundation
 class AppUtils {
     // MARK: - API Informations
     public static let BASE_URL = "http://172.19.11.20:9090";
-    public static let LOGIN_API = AppUtils.BASE_URL + "/auth";
+    public static let SIGN_IN_API = AppUtils.BASE_URL + "/auth";
+    public static let SIGN_UP_API = AppUtils.BASE_URL + "/registration";
     
     // MARK: - Session Login Requirements
     
