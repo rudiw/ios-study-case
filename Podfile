@@ -10,5 +10,7 @@ target 'Study Case' do
     pod 'SwiftyJSON'
     pod 'SVProgressHUD'
     pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
+    pod 'FBSDKLoginKit'
+
 
 end

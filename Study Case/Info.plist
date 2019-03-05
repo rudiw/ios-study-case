@@ -15,6 +15,32 @@
 <!--            </dict>-->
 <!--        </dict>-->
 <!--    </dict>-->
+
+    <!--facebook-->
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>fb843121432690873</string>
+            </array>
+        </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>843121432690873</string>
+    <key>FacebookDisplayName</key>
+    <string>Mitrais - Bootcamp Mobile</string>
+    
+    
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>fbapi</string>
+        <string>fb-messenger-share-api</string>
+        <string>fbauth2</string>
+        <string>fbshareextension</string>
+    </array>
+    <!--end of facebook-->
+    
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
