@@ -10,6 +10,7 @@ import UIKit
 import SVProgressHUD
 import Alamofire
 import SwiftyJSON
+import ChameleonFramework
 
 
 class VCLogin: UIViewController, UITextFieldDelegate {
@@ -22,11 +23,19 @@ class VCLogin: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
+    @IBOutlet weak var btnSignIn: UIButton!
+    
+    @IBOutlet weak var lblSignUp: UILabel!
     
     //MARK: - View Did Load
     
     override func viewDidLoad() {
         print("view did load");
+        
+        self.view.backgroundColor = UIColor.randomFlat;
+        self.btnSignIn.backgroundColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true);
+        self.btnSignIn.setTitleColor(ContrastColorOf(self.btnSignIn.backgroundColor!, returnFlat: true), for: .normal);
+        self.lblSignUp.textColor = ContrastColorOf(self.view.backgroundColor!, returnFlat: true);
         
         txtEmail.delegate = self;
         txtPassword.delegate = self;
