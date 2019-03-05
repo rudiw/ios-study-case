@@ -26,6 +26,7 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var btnSignIn: UIButton!
+    @IBOutlet weak var lblForgotPassword: UILabel!
     
     @IBOutlet weak var lblSignUp: UILabel!
     
@@ -46,6 +47,7 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
         self.btnSignIn.backgroundColor = ContrastColorOf(colorBg, returnFlat: true);
         self.btnSignIn.setTitleColor(ContrastColorOf(self.btnSignIn.backgroundColor!, returnFlat: true), for: .normal);
         self.lblSignUp.textColor = ContrastColorOf(colorBg, returnFlat: true);
+        self.lblForgotPassword.textColor = ContrastColorOf(colorBg, returnFlat: true);
         
         txtEmail.delegate = self;
         txtPassword.delegate = self;
@@ -60,6 +62,10 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
         let tapOnLblSignUp = UITapGestureRecognizer(target: self, action: #selector(showSignUp));
         lblSignUp.isUserInteractionEnabled = true;
         lblSignUp.addGestureRecognizer(tapOnLblSignUp);
+        
+        let tapOnLblForgotPassword = UITapGestureRecognizer(target: self, action: #selector(showForgotPassword));
+        lblForgotPassword.isUserInteractionEnabled = true;
+        lblForgotPassword.addGestureRecognizer(tapOnLblForgotPassword);
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboarWillShow), name: UIResponder.keyboardWillShowNotification, object: nil);
         
@@ -81,7 +87,7 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
         navbar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : ContrastColorOf(colorBg, returnFlat: true) ]
     }
     
-    // MARK: - Update View of Key Board
+    // MARK: - Update View of Keyboard
     
     @objc func keyboarWillShow(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
@@ -193,9 +199,26 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
         performSegue(withIdentifier: "toVcSignUp", sender: self);
     }
     
+    // MARK: - Show Forgot Password Form
+    @objc func showForgotPassword() {
+        print("Perform seque to forgot password...");
+        performSegue(withIdentifier: "toVcForgotPassword", sender: self);
+    }
+
+    // MARK: - Prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vcSignUp = segue.destination as! VCSignUp;
-        vcSignUp.colorBg = colorBg;
+        /**
+         it can be used class parent for colorBg
+         */
+        if (segue.destination is VCSignIn) {
+            let toVc = segue.destination as! VCSignUp;
+            toVc.colorBg = colorBg;
+        }
+        if (segue.destination is VCForgotPassword) {
+            let toVc = segue.destination as! VCForgotPassword;
+            toVc.colorBg = colorBg;
+        }
+        
     }
     
 }

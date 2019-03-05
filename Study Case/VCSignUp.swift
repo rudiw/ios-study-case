@@ -34,6 +34,8 @@ class VCSignUp: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         print("VCSignUp | view did load");
         
+        self.title = "Sign Up";
+        
         self.view.backgroundColor = colorBg;
         self.viewTop.backgroundColor = colorBg;
         self.viewBottom.backgroundColor = colorBg;
@@ -70,7 +72,7 @@ class VCSignUp: UIViewController, UITextFieldDelegate {
         navbar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : ContrastColorOf(colorBg, returnFlat: true) ]
     }
     
-    // MARK: - Update View of Key Board
+    // MARK: - Update View of Keyboard
     
     @objc func keyboarWillShow(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
