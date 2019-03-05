@@ -8,6 +8,8 @@
 
 import UIKit
 import ChameleonFramework
+import Alamofire
+import SVProgressHUD
 
 
 class VCForgotPassword: UIViewController, UITextFieldDelegate {
@@ -73,6 +75,55 @@ class VCForgotPassword: UIViewController, UITextFieldDelegate {
     // MARK: - Do Submit Email
     
     @IBAction func btnSubmitPressed(_ sender: UIButton) {
+        let email = txtEmail.text;
+        if (email == nil || email == "") {
+            let alert = UIAlertController(title: "Error", message: "Email must not be empty.", preferredStyle: .alert);
+            let action = UIAlertAction(title: "Ok", style: .default, handler: nil);
+            alert.addAction(action);
+            self.present(alert, animated: true, completion: nil);
+            return;
+        }
+        if (!AppUtils.validateEmail(candidate: email!)) {
+            let alert = UIAlertController(title: "Error", message: "Email is not valid.", preferredStyle: .alert);
+            let action = UIAlertAction(title: "Ok", style: .default, handler: nil);
+            alert.addAction(action);
+            self.present(alert, animated: true, completion: nil);
+            return;
+        }
+        
+        // input values are valid, ready to send to the api sign up
+        hideKeyboard();
+        
+        let params: Parameters = [
+            "email": email!
+        ]
+        print("Params to sign in: \(params)");
+        
+        SVProgressHUD.show();
+        Alamofire.request(AppUtils.FORGOT_PASSWORD_API, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON(completionHandler: {
+            response in
+            
+            //            print("Response result value: \(response.result.value)");
+            SVProgressHUD.dismiss();
+            
+            if (response.result.isSuccess && response.response?.statusCode == 200) {
+                print("Submit forgot password successfully...");
+                
+                let alert = UIAlertController(title: "Info", message: "Please check your email to continue.", preferredStyle: .alert);
+                let action = UIAlertAction(title: "Ok", style: .default){ (action) in
+                    let _ = self.navigationController?.popViewController(animated: true);
+                };
+                alert.addAction(action);
+                self.present(alert, animated: true, completion: nil);
+            } else {
+                print("Failed to sign up: \(response.result)");
+                
+                let alert = UIAlertController(title: "Error", message: "Please try again later.", preferredStyle: .alert);
+                let action = UIAlertAction(title: "Ok", style: .default, handler: nil);
+                alert.addAction(action);
+                self.present(alert, animated: true, completion: nil);
+            }
+        })
     }
     
 }

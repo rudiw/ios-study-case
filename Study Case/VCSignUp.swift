@@ -9,7 +9,6 @@
 import UIKit
 import SVProgressHUD
 import Alamofire
-import SwiftyJSON
 import ChameleonFramework
 
 
@@ -184,7 +183,7 @@ class VCSignUp: UIViewController, UITextFieldDelegate {
                 alert.addAction(action);
                 self.present(alert, animated: true, completion: nil);
             }
-        })
+        });
     }
     
 }

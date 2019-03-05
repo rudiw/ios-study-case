@@ -14,6 +14,7 @@ class AppUtils {
     public static let BASE_URL = "http://172.19.11.20:9090";
     public static let SIGN_IN_API = AppUtils.BASE_URL + "/auth";
     public static let SIGN_UP_API = AppUtils.BASE_URL + "/registration";
+    public static let FORGOT_PASSWORD_API = AppUtils.BASE_URL + "/forgot_password";
     
     // MARK: - Session Login Requirements
     

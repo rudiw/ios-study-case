@@ -94,8 +94,8 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
             let keyboardRectangle = keyboardFrame.cgRectValue;
             let keyboardHeight = keyboardRectangle.height;
             
-            print("keyboarWillShow with height: \(keyboardHeight)");
-            print("viewLoginHeight: \(viewLoginHeight)");
+//            print("keyboarWillShow with height: \(keyboardHeight)");
+//            print("viewLoginHeight: \(viewLoginHeight)");
             
             self.viewTopHeight.constant = -1 * (keyboardHeight + viewLoginHeight);
             self.view.layoutIfNeeded();
@@ -210,7 +210,7 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
         /**
          it can be used class parent for colorBg
          */
-        if (segue.destination is VCSignIn) {
+        if (segue.destination is VCSignUp) {
             let toVc = segue.destination as! VCSignUp;
             toVc.colorBg = colorBg;
         }

@@ -103,7 +103,6 @@
 				B0D1C3D82223D58E00FD2D1F /* AppDelegate.swift */,
 				B0D1C3DA2223D58E00FD2D1F /* ViewController.swift */,
 				B08819D5222CEFA4005E460B /* VCSignIn.swift */,
-				B08819D7222D0218005E460B /* AppUtils.swift */,
 				B0B5232B222E0D9900E6ACAA /* VCSignUp.swift */,
 				B0869686222E4AB0004A8497 /* VCForgotPassword.swift */,
 			);
@@ -113,6 +112,7 @@
 		B0D1C4002223DCC400FD2D1F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B08819D7222D0218005E460B /* AppUtils.swift */,
 				B0D1C3E42223D59900FD2D1F /* Info.plist */,
 			);
 			name = "Supporting Files";
