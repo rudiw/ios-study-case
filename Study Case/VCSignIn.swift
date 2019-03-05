@@ -11,6 +11,8 @@ import SVProgressHUD
 import Alamofire
 import SwiftyJSON
 import ChameleonFramework
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 
 class VCSignIn: UIViewController, UITextFieldDelegate {
@@ -89,6 +91,14 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
     
     // MARK: - Update View of Keyboard
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if (UIDevice.current.orientation.isLandscape) {
+            self.viewTop.isHidden = true;
+        } else {
+            self.viewTop.isHidden = false;
+        }
+    }
+    
     @objc func keyboarWillShow(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue;
@@ -97,7 +107,7 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
 //            print("keyboarWillShow with height: \(keyboardHeight)");
 //            print("viewLoginHeight: \(viewLoginHeight)");
             
-            self.viewTopHeight.constant = -1 * (keyboardHeight + viewLoginHeight);
+            self.viewTopHeight.constant = -1 * (keyboardHeight);
             self.view.layoutIfNeeded();
         }
     }
