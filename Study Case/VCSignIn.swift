@@ -106,7 +106,7 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
             print("keyboardWillShow with height: \(keyboardHeight)");
             print("viewLoginHeight: \(viewLoginHeight)");
             
-            self.viewTopHeight.constant = -1 * (viewLoginHeight + 50);
+            self.viewTopHeight.constant = -1 * (keyboardHeight);
             self.view.layoutIfNeeded();
         }
     }

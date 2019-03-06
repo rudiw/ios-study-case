@@ -275,41 +275,75 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Blh-R8-wqt" userLabel="viewTop">
                                 <rect key="frame" x="0.0" y="64" width="375" height="452.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xmW-2q-1gT">
-                                        <rect key="frame" x="164" y="90" width="46" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xmW-2q-1gT">
+                                        <rect key="frame" x="37" y="33" width="300" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
+                                        <state key="normal" title="Connect with Email"/>
+                                        <connections>
+                                            <action selector="btnSignInPressed:" destination="UsM-Iu-nLr" eventType="touchUpInside" id="3wS-gY-lpW"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gIB-7v-34g">
-                                        <rect key="frame" x="164" y="150" width="46" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s23-dO-APi">
-                                        <rect key="frame" x="164" y="225" width="46" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zpq-Hz-ox6">
-                                        <rect key="frame" x="164" y="317" width="46" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Cf7-vb-GsX">
+                                        <rect key="frame" x="37.5" y="165" width="300" height="122"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gIB-7v-34g">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
+                                                <state key="normal" title="Connect with Facebook"/>
+                                                <connections>
+                                                    <action selector="btnFacebookPressed:" destination="UsM-Iu-nLr" eventType="touchUpInside" id="g5e-6w-rGL"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s23-dO-APi">
+                                                <rect key="frame" x="0.0" y="46" width="300" height="30"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
+                                                <state key="normal" title="Connect with Twitter"/>
+                                                <connections>
+                                                    <action selector="btnTwitterPressed:" destination="UsM-Iu-nLr" eventType="touchUpInside" id="xdS-jm-5VN"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zpq-Hz-ox6">
+                                                <rect key="frame" x="0.0" y="92" width="300" height="30"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
+                                                <state key="normal" title="Connect with Google"/>
+                                                <connections>
+                                                    <action selector="btnGooglePressed:" destination="UsM-Iu-nLr" eventType="touchUpInside" id="PsJ-Gr-ELG"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="4MG-At-aE0"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.098039215690000001" green="0.1647058824" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Cf7-vb-GsX" firstAttribute="centerY" secondItem="Blh-R8-wqt" secondAttribute="centerY" id="bfj-Sr-Ozc"/>
+                                    <constraint firstItem="Cf7-vb-GsX" firstAttribute="centerX" secondItem="Blh-R8-wqt" secondAttribute="centerX" id="xAf-3e-LAM"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="28W-Th-2IC" userLabel="viewBottom">
                                 <rect key="frame" x="0.0" y="516.5" width="375" height="150.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Don't have account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNx-JK-rxl">
-                                        <rect key="frame" x="108" y="65" width="158" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNx-JK-rxl">
+                                        <rect key="frame" x="108.5" y="65" width="158" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="158" id="gR0-X1-i30"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.58105844259999995" green="0.12855249639999999" blue="0.57453137639999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="tNx-JK-rxl" firstAttribute="centerY" secondItem="28W-Th-2IC" secondAttribute="centerY" id="qBZ-tZ-ZI2"/>
+                                    <constraint firstItem="tNx-JK-rxl" firstAttribute="centerX" secondItem="28W-Th-2IC" secondAttribute="centerX" id="qgX-tO-ymy"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -328,7 +362,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Connect" id="2Wv-II-GJY"/>
                     <connections>
+                        <outlet property="btnFacebook" destination="gIB-7v-34g" id="DPI-JP-lv4"/>
+                        <outlet property="btnGoogle" destination="Zpq-Hz-ox6" id="Tuz-t3-mAJ"/>
+                        <outlet property="btnSignIn" destination="xmW-2q-1gT" id="bpL-lb-6EA"/>
+                        <outlet property="btnTwitter" destination="s23-dO-APi" id="ec6-w1-mwN"/>
                         <outlet property="lblSignUp" destination="tNx-JK-rxl" id="aSQ-il-yqq"/>
+                        <outlet property="sViewConnect" destination="Cf7-vb-GsX" id="eFE-Bf-M4o"/>
                         <outlet property="viewBottom" destination="28W-Th-2IC" id="DE7-QE-1Wf"/>
                         <outlet property="viewTop" destination="Blh-R8-wqt" id="yXz-FN-dEJ"/>
                         <segue destination="sIg-Df-CPB" kind="show" identifier="vcConnectToVcSignIn" id="Nhp-h5-BR3"/>
@@ -337,7 +376,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7gm-Yr-468" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-55" y="31"/>
+            <point key="canvasLocation" x="-55.200000000000003" y="30.134932533733135"/>
         </scene>
         <!--Forgot Password-->
         <scene sceneID="vbl-wO-nD4">

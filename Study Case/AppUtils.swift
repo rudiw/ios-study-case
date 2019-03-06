@@ -25,9 +25,13 @@ class AppUtils {
     public static let USER_EMAIL = "user_email";
     public static let USER_TOKEN = "user_token";
     public static let IS_AUTHENTICATED = "is_authenticated";
+    public static let FACEBOOK_USER_ID = "facebook_user_id";
+    public static let FACEBOOK_USER_TOKEN = "facebook_user_token";
     public static let USER_SESSION_MAP: [String: Any?] = [AppUtils.USER_EMAIL : "",
                                                           AppUtils.USER_TOKEN : "",
-                                                          AppUtils.IS_AUTHENTICATED: false];
+                                                          AppUtils.IS_AUTHENTICATED: false,
+                                                          AppUtils.FACEBOOK_USER_ID: "",
+                                                          AppUtils.FACEBOOK_USER_TOKEN: ""];
     
     // MARK: - Validate Email
     public static func validateEmail(candidate: String) -> Bool {
