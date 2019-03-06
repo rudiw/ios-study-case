@@ -275,56 +275,55 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Blh-R8-wqt" userLabel="viewTop">
                                 <rect key="frame" x="0.0" y="64" width="375" height="452.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xmW-2q-1gT">
-                                        <rect key="frame" x="37" y="33" width="300" height="60"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xmW-2q-1gT">
+                                        <rect key="frame" x="37" y="126" width="300" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="22h-Wf-2zu"/>
+                                            <constraint firstAttribute="width" constant="300" id="Fxq-es-tJJ"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                        <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
-                                        <state key="normal" title="Connect with Email"/>
+                                        <inset key="titleEdgeInsets" minX="-492" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="256" maxY="0.0"/>
+                                        <state key="normal" title="Email" image="email"/>
                                         <connections>
                                             <action selector="btnSignInPressed:" destination="UsM-Iu-nLr" eventType="touchUpInside" id="3wS-gY-lpW"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Cf7-vb-GsX">
-                                        <rect key="frame" x="37.5" y="165" width="300" height="122"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gIB-7v-34g">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
-                                                <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
-                                                <state key="normal" title="Connect with Facebook"/>
-                                                <connections>
-                                                    <action selector="btnFacebookPressed:" destination="UsM-Iu-nLr" eventType="touchUpInside" id="g5e-6w-rGL"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s23-dO-APi">
-                                                <rect key="frame" x="0.0" y="46" width="300" height="30"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
-                                                <state key="normal" title="Connect with Twitter"/>
-                                                <connections>
-                                                    <action selector="btnTwitterPressed:" destination="UsM-Iu-nLr" eventType="touchUpInside" id="xdS-jm-5VN"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zpq-Hz-ox6">
-                                                <rect key="frame" x="0.0" y="92" width="300" height="30"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
-                                                <state key="normal" title="Connect with Google"/>
-                                                <connections>
-                                                    <action selector="btnGooglePressed:" destination="UsM-Iu-nLr" eventType="touchUpInside" id="PsJ-Gr-ELG"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="4MG-At-aE0"/>
-                                        </constraints>
-                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gIB-7v-34g">
+                                        <rect key="frame" x="37" y="178" width="300" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <inset key="titleEdgeInsets" minX="-457" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="256" maxY="0.0"/>
+                                        <state key="normal" title="Facebook" image="facebook"/>
+                                        <connections>
+                                            <action selector="btnFacebookPressed:" destination="UsM-Iu-nLr" eventType="touchUpInside" id="g5e-6w-rGL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s23-dO-APi">
+                                        <rect key="frame" x="37" y="230" width="300" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <inset key="titleEdgeInsets" minX="-483" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="256" maxY="0.0"/>
+                                        <state key="normal" title="Twitter" image="twitter"/>
+                                        <connections>
+                                            <action selector="btnTwitterPressed:" destination="UsM-Iu-nLr" eventType="touchUpInside" id="xdS-jm-5VN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zpq-Hz-ox6">
+                                        <rect key="frame" x="37" y="282" width="300" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <inset key="titleEdgeInsets" minX="-479" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="256" maxY="0.0"/>
+                                        <state key="normal" title="Google" image="google"/>
+                                        <connections>
+                                            <action selector="btnGooglePressed:" destination="UsM-Iu-nLr" eventType="touchUpInside" id="PsJ-Gr-ELG"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.098039215690000001" green="0.1647058824" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="Cf7-vb-GsX" firstAttribute="centerY" secondItem="Blh-R8-wqt" secondAttribute="centerY" id="bfj-Sr-Ozc"/>
-                                    <constraint firstItem="Cf7-vb-GsX" firstAttribute="centerX" secondItem="Blh-R8-wqt" secondAttribute="centerX" id="xAf-3e-LAM"/>
-                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="28W-Th-2IC" userLabel="viewBottom">
                                 <rect key="frame" x="0.0" y="516.5" width="375" height="150.5"/>
@@ -367,7 +366,6 @@
                         <outlet property="btnSignIn" destination="xmW-2q-1gT" id="bpL-lb-6EA"/>
                         <outlet property="btnTwitter" destination="s23-dO-APi" id="ec6-w1-mwN"/>
                         <outlet property="lblSignUp" destination="tNx-JK-rxl" id="aSQ-il-yqq"/>
-                        <outlet property="sViewConnect" destination="Cf7-vb-GsX" id="eFE-Bf-M4o"/>
                         <outlet property="viewBottom" destination="28W-Th-2IC" id="DE7-QE-1Wf"/>
                         <outlet property="viewTop" destination="Blh-R8-wqt" id="yXz-FN-dEJ"/>
                         <segue destination="sIg-Df-CPB" kind="show" identifier="vcConnectToVcSignIn" id="Nhp-h5-BR3"/>
@@ -490,7 +488,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="email" width="341" height="341"/>
+        <image name="facebook" width="341" height="341"/>
+        <image name="google" width="341" height="341"/>
         <image name="logo" width="341" height="341"/>
+        <image name="twitter" width="341" height="341"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="cS9-f4-vfz"/>

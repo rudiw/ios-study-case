@@ -45,6 +45,7 @@ class VCConnect: UIViewController {
         
         self.btnTwitter.backgroundColor = ContrastColorOf(colorBg, returnFlat: true);
         self.btnTwitter.setTitleColor(ContrastColorOf(self.btnTwitter.backgroundColor!, returnFlat: true), for: .normal);
+        
         self.btnGoogle.backgroundColor = ContrastColorOf(colorBg, returnFlat: true);
         self.btnGoogle.setTitleColor(ContrastColorOf(self.btnGoogle.backgroundColor!, returnFlat: true), for: .normal);
         self.lblSignUp.textColor = ContrastColorOf(colorBg, returnFlat: true);
