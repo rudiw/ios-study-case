@@ -18,6 +18,7 @@
 		B0D1C3E02223D59900FD2D1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0D1C3DF2223D59900FD2D1F /* Assets.xcassets */; };
 		B0D1C3E32223D59900FD2D1F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0D1C3E12223D59900FD2D1F /* LaunchScreen.storyboard */; };
 		B0D1C3FA2223DAA000FD2D1F /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D1C3F92223DAA000FD2D1F /* Dummy.swift */; };
+		B0E0D576222F53870062FC81 /* VCConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E0D575222F53870062FC81 /* VCConnect.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		B0D1C3E22223D59900FD2D1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0D1C3E42223D59900FD2D1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0D1C3F92223DAA000FD2D1F /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
+		B0E0D575222F53870062FC81 /* VCConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCConnect.swift; sourceTree = "<group>"; };
 		ED4836D2E7E84E976CC2035A /* Pods_Study_Case.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Study_Case.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F97472790CF6F56A8F3F9266 /* Pods-Study Case.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Study Case.release.xcconfig"; path = "Target Support Files/Pods-Study Case/Pods-Study Case.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +107,7 @@
 				B08819D5222CEFA4005E460B /* VCSignIn.swift */,
 				B0B5232B222E0D9900E6ACAA /* VCSignUp.swift */,
 				B0869686222E4AB0004A8497 /* VCForgotPassword.swift */,
+				B0E0D575222F53870062FC81 /* VCConnect.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				B0869687222E4AB0004A8497 /* VCForgotPassword.swift in Sources */,
 				B0D1C3DB2223D58E00FD2D1F /* ViewController.swift in Sources */,
 				B0D1C3FA2223DAA000FD2D1F /* Dummy.swift in Sources */,
+				B0E0D576222F53870062FC81 /* VCConnect.swift in Sources */,
 				B08819D6222CEFA4005E460B /* VCSignIn.swift in Sources */,
 				B0D1C3D92223D58E00FD2D1F /* AppDelegate.swift in Sources */,
 			);

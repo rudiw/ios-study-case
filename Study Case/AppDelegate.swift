@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController();
         } else {
             //user is not authenticated
-            let vcLogin = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "vcLogin");
+            let vcLogin = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "vcConnect");
             self.window?.rootViewController = UINavigationController(rootViewController: vcLogin);
         }
         

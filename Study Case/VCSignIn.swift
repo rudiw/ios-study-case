@@ -41,7 +41,6 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         print("VCSignIn | view did load");
         
-        colorBg = UIColor.randomFlat
         self.view.backgroundColor = colorBg;
         self.viewTop.backgroundColor = colorBg;
         self.viewLogin.backgroundColor = colorBg;
@@ -104,10 +103,10 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
             let keyboardRectangle = keyboardFrame.cgRectValue;
             let keyboardHeight = keyboardRectangle.height;
             
-//            print("keyboarWillShow with height: \(keyboardHeight)");
-//            print("viewLoginHeight: \(viewLoginHeight)");
+            print("keyboardWillShow with height: \(keyboardHeight)");
+            print("viewLoginHeight: \(viewLoginHeight)");
             
-            self.viewTopHeight.constant = -1 * (keyboardHeight);
+            self.viewTopHeight.constant = -1 * (viewLoginHeight + 50);
             self.view.layoutIfNeeded();
         }
     }
@@ -206,13 +205,13 @@ class VCSignIn: UIViewController, UITextFieldDelegate {
     // MARK: - Show Sign Up Form
     @objc func showSignUp() {
         print("Perform seque to sign up...");
-        performSegue(withIdentifier: "toVcSignUp", sender: self);
+        performSegue(withIdentifier: "vcSignInToVcSignUp", sender: self);
     }
     
     // MARK: - Show Forgot Password Form
     @objc func showForgotPassword() {
         print("Perform seque to forgot password...");
-        performSegue(withIdentifier: "toVcForgotPassword", sender: self);
+        performSegue(withIdentifier: "vcSignInToVcForgotPassword", sender: self);
     }
 
     // MARK: - Prepare for segue
