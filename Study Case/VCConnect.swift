@@ -38,7 +38,6 @@ class VCConnect: UIViewController {
         
         self.btnSignIn.backgroundColor = ContrastColorOf(colorBg, returnFlat: true);
         self.btnSignIn.setTitleColor(ContrastColorOf(self.btnSignIn.backgroundColor!, returnFlat: true), for: .normal);
-        btnSignIn.selectedButton(title: "Connect with Email", iconName: "email", widthConstraints: NSLayoutConstraint(item: btnSignIn, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 250));
         
         self.btnFacebook.backgroundColor = ContrastColorOf(colorBg, returnFlat: true);
         self.btnFacebook.setTitleColor(ContrastColorOf(self.btnFacebook.backgroundColor!, returnFlat: true), for: .normal);

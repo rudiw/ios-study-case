@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4ABBE697AE9D2E4ADE01FF8F /* Pods_Study_Case.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED4836D2E7E84E976CC2035A /* Pods_Study_Case.framework */; };
-		B07FD462222F90C300545174 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07FD461222F90C300545174 /* UIUtils.swift */; };
-		B07FD464222F94AF00545174 /* ButtonWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07FD463222F94AF00545174 /* ButtonWithImage.swift */; };
 		B0869687222E4AB0004A8497 /* VCForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0869686222E4AB0004A8497 /* VCForgotPassword.swift */; };
 		B08819D6222CEFA4005E460B /* VCSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08819D5222CEFA4005E460B /* VCSignIn.swift */; };
 		B08819D8222D0218005E460B /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08819D7222D0218005E460B /* AppUtils.swift */; };
@@ -25,8 +23,6 @@
 
 /* Begin PBXFileReference section */
 		7EA2D7A51F756155885C18DB /* Pods-Study Case.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Study Case.debug.xcconfig"; path = "Target Support Files/Pods-Study Case/Pods-Study Case.debug.xcconfig"; sourceTree = "<group>"; };
-		B07FD461222F90C300545174 /* UIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
-		B07FD463222F94AF00545174 /* ButtonWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonWithImage.swift; sourceTree = "<group>"; };
 		B0869686222E4AB0004A8497 /* VCForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCForgotPassword.swift; sourceTree = "<group>"; };
 		B08819D5222CEFA4005E460B /* VCSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCSignIn.swift; sourceTree = "<group>"; };
 		B08819D7222D0218005E460B /* AppUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
@@ -121,8 +117,6 @@
 			children = (
 				B08819D7222D0218005E460B /* AppUtils.swift */,
 				B0D1C3E42223D59900FD2D1F /* Info.plist */,
-				B07FD461222F90C300545174 /* UIUtils.swift */,
-				B07FD463222F94AF00545174 /* ButtonWithImage.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -279,11 +273,9 @@
 				B0B5232C222E0D9900E6ACAA /* VCSignUp.swift in Sources */,
 				B08819D8222D0218005E460B /* AppUtils.swift in Sources */,
 				B0869687222E4AB0004A8497 /* VCForgotPassword.swift in Sources */,
-				B07FD464222F94AF00545174 /* ButtonWithImage.swift in Sources */,
 				B0D1C3DB2223D58E00FD2D1F /* ViewController.swift in Sources */,
 				B0D1C3FA2223DAA000FD2D1F /* Dummy.swift in Sources */,
 				B0E0D576222F53870062FC81 /* VCConnect.swift in Sources */,
-				B07FD462222F90C300545174 /* UIUtils.swift in Sources */,
 				B08819D6222CEFA4005E460B /* VCSignIn.swift in Sources */,
 				B0D1C3D92223D58E00FD2D1F /* AppDelegate.swift in Sources */,
 			);
