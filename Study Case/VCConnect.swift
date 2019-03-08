@@ -206,7 +206,8 @@ class VCConnect: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
             "email": user.email,
             "firtsname": user.firstName,
             "lastname": user.lastName,
-            "role_id": 3
+            "role_id": 3,
+            "origin": user.type
         ]
         print("Params to sign in: \(params)");
 

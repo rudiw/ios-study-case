@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKCoreKit
 import GoogleSignIn
+import TwitterKit
 
 
 @UIApplicationMain
@@ -24,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //google
         GIDSignIn.sharedInstance().clientID = AppUtils.GOOGLE_CLIENT_ID;
+        
+        //twitter
+        TWTRTwitter.sharedInstance().start(withConsumerKey: AppUtils.TWITTER_KEY, consumerSecret: AppUtils.TWITTER_SECRET_KEY)
         
         //check loggedIn in session
         if let _ = UserDefaults.standard.value(forKey: AppUtils.KEY_USER_SESSION) {
@@ -44,7 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //google
         let handledGoogle = GIDSignIn.sharedInstance()?.handle(url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplication.OpenURLOptionsKey.annotation]);
         
-        return handledFacebook! && handledGoogle!;
+        //twitter
+        let handledTwitter = TWTRTwitter.sharedInstance().application(app, open: url, options: options);
+        
+        return handledFacebook! && handledGoogle! && handledTwitter;
     }
 
 }
