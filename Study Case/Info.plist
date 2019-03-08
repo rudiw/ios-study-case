@@ -19,8 +19,8 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb843121432690873</string>
@@ -35,13 +35,18 @@
 			</array>
 		</dict>
 		<dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>twitterkit-twitterKey</string>
+				<string>twitterkit-u44cvz6f6fiapQoZ1BkZatzan</string>
 			</array>
 		</dict>
+	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>twitter</string>
+		<string>twitterauth</string>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
@@ -49,11 +54,6 @@
 	<string>843121432690873</string>
 	<key>FacebookDisplayName</key>
 	<string>Mitrais - Bootcamp Mobile</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>twitter</string>
-		<string>twitterauth</string>
-	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

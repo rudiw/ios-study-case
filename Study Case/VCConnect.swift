@@ -119,14 +119,31 @@ class VCConnect: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
                 print("signed in as authTokenSecret \(session!.authTokenSecret)");
                 
                 let client = TWTRAPIClient.withCurrentUser()
-                
-                client.requestEmail { email, error in
-                    if (email != nil) {
-                        print("signed in as \(email)");
+                client.loadUser(withID: session!.userID, completion: { (user, error) in
+                    if (error != nil) {
+                        print("Request user failed with error: \(error!.localizedDescription)");
                     } else {
-                        print("error: \(error!.localizedDescription)");
+                        let upName = user!.name
+                        
+                        client.requestEmail { email, error in
+                            if (email != nil) {
+                                print("signed in as \(email)");
+                                
+                                let nameArray = upName.split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true)
+                                let upFirstName = nameArray[0];
+                                var upLastName = nameArray[0];
+                                if (nameArray.count > 1) {
+                                    upLastName = nameArray[1];
+                                }
+                                
+                                self.registerUser(user: User(id: session!.userID, email: email!, fullName: upName, firstName: String(upFirstName), lastName: String(upLastName), token: session!.authToken, type: .TWITTER))
+                            } else {
+                                print("Request email failed with error: \(error!.localizedDescription)");
+                            }
+                        }
                     }
-                }
+                })
+
             } else {
                 print("error: \(error!.localizedDescription)");
             }
@@ -236,7 +253,7 @@ class VCConnect: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
         Alamofire.request(AppUtils.SIGN_UP_SOC_MED_API, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON(completionHandler: {
             response in
             
-            print("Response result value: \(response.result.value)");
+//            print("Response result value: \(response.result.value)");
 
             SVProgressHUD.dismiss();
 
@@ -260,7 +277,7 @@ class VCConnect: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
 
                 print("userSessionMap: \(userSessionMap)");
 
-//                UserDefaults.standard.set(userSessionMap, forKey: AppUtils.KEY_USER_SESSION)
+                UserDefaults.standard.set(userSessionMap, forKey: AppUtils.KEY_USER_SESSION)
 
                 let app = UIApplication.shared.delegate as? AppDelegate;
                 app?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController();

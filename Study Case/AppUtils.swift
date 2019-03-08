@@ -42,6 +42,8 @@ class AppUtils {
     public static let GOOGLE_CLIENT_ID = "1070994837926-ldftgse09qsii0iuc53goh6du74qebnc.apps.googleusercontent.com";
     
     //twitter keys
+//    public static let TWITTER_API_KEY = "CrRnLN16r8PAMUD451ltJoQcn"
+//    public static let TWITTER_API_SECRET_KEY = "rsB9Ve1wguOpBWuAERJD8H5kntcxTgrB4l6TyGeHL8UW1vzfJ7"
     public static let TWITTER_API_KEY = "u44cvz6f6fiapQoZ1BkZatzan"
     public static let TWITTER_API_SECRET_KEY = "yLhvEWkEhZTTGbI6CZ8s5eRNq8ILmmUsgClutQ2k7GiI5r4yS3"
     
