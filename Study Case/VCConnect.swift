@@ -14,6 +14,7 @@ import SVProgressHUD
 import Alamofire
 import GoogleSignIn
 import SwiftyJSON
+import TwitterKit
 
 
 class VCConnect: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
@@ -110,6 +111,26 @@ class VCConnect: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
     }
 
     @IBAction func btnTwitterPressed(_ sender: UIButton) {
+        TWTRTwitter.sharedInstance().logIn(completion: { (session, error) in
+            if (session != nil) {
+                print("signed in as userName \(session!.userName)");
+                print("signed in as userID \(session!.userID)");
+                print("signed in as authToken \(session!.authToken)");
+                print("signed in as authTokenSecret \(session!.authTokenSecret)");
+                
+                let client = TWTRAPIClient.withCurrentUser()
+                
+                client.requestEmail { email, error in
+                    if (email != nil) {
+                        print("signed in as \(email)");
+                    } else {
+                        print("error: \(error!.localizedDescription)");
+                    }
+                }
+            } else {
+                print("error: \(error!.localizedDescription)");
+            }
+        })
     }
     
     @IBAction func btnGooglePressed(_ sender: UIButton) {
@@ -207,7 +228,7 @@ class VCConnect: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
             "firtsname": user.firstName,
             "lastname": user.lastName,
             "role_id": 3,
-            "origin": user.type
+            "origin": user.type.rawValue
         ]
         print("Params to sign in: \(params)");
 
@@ -215,7 +236,7 @@ class VCConnect: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
         Alamofire.request(AppUtils.SIGN_UP_SOC_MED_API, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON(completionHandler: {
             response in
             
-//            print("Response result value: \(response.result.value)");
+            print("Response result value: \(response.result.value)");
 
             SVProgressHUD.dismiss();
 
@@ -239,7 +260,7 @@ class VCConnect: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
 
                 print("userSessionMap: \(userSessionMap)");
 
-                UserDefaults.standard.set(userSessionMap, forKey: AppUtils.KEY_USER_SESSION)
+//                UserDefaults.standard.set(userSessionMap, forKey: AppUtils.KEY_USER_SESSION)
 
                 let app = UIApplication.shared.delegate as? AppDelegate;
                 app?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController();

@@ -42,8 +42,8 @@ class AppUtils {
     public static let GOOGLE_CLIENT_ID = "1070994837926-ldftgse09qsii0iuc53goh6du74qebnc.apps.googleusercontent.com";
     
     //twitter keys
-    public static let TWITTER_KEY = "u44cvz6f6fiapQoZ1BkZatzan"
-    public static let TWITTER_SECRET_KEY = "yLhvEWkEhZTTGbI6CZ8s5eRNq8ILmmUsgClutQ2k7GiI5r4yS3"
+    public static let TWITTER_API_KEY = "u44cvz6f6fiapQoZ1BkZatzan"
+    public static let TWITTER_API_SECRET_KEY = "yLhvEWkEhZTTGbI6CZ8s5eRNq8ILmmUsgClutQ2k7GiI5r4yS3"
     
     // MARK: - Validate Email
     public static func validateEmail(candidate: String) -> Bool {

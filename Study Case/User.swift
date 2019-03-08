@@ -9,7 +9,7 @@
 import Foundation
 
 
-enum UserType {
+enum UserType: String {
     case FACEBOOK
     case TWITTER
     case GOOGLE
