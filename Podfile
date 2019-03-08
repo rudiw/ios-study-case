@@ -11,6 +11,7 @@ target 'Study Case' do
     pod 'SVProgressHUD'
     pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
     pod 'FBSDKLoginKit'
+    pod 'GoogleSignIn'
 
 
 end

@@ -12,9 +12,11 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import SVProgressHUD
 import Alamofire
+import GoogleSignIn
+import SwiftyJSON
 
 
-class VCConnect: UIViewController {
+class VCConnect: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
     @IBOutlet weak var viewTop: UIView!
     @IBOutlet weak var sViewConnect: UIStackView!
     @IBOutlet weak var btnSignIn: UIButton!
@@ -52,6 +54,10 @@ class VCConnect: UIViewController {
         let tapOnLblSignUp = UITapGestureRecognizer(target: self, action: #selector(showSignUp));
         lblSignUp.isUserInteractionEnabled = true;
         lblSignUp.addGestureRecognizer(tapOnLblSignUp);
+        
+        //google
+        GIDSignIn.sharedInstance().delegate = self;
+        GIDSignIn.sharedInstance().uiDelegate = self;
         
 //        FB Check Current Login Status
         if (FBSDKAccessToken.currentAccessTokenIsActive()) {
@@ -107,6 +113,7 @@ class VCConnect: UIViewController {
     }
     
     @IBAction func btnGooglePressed(_ sender: UIButton) {
+        GIDSignIn.sharedInstance()?.signIn();
     }
     
     // MARK: - Show Sign Up Form
@@ -134,43 +141,100 @@ class VCConnect: UIViewController {
     // MARK: - Facebook Load Profile
     func loadFacebookProfile(token: String) {
         if (FBSDKAccessToken.currentAccessTokenIsActive()) {
-            let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email,first_name,last_name"], tokenString: token, version: nil, httpMethod: "GET")
+            let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email, name, first_name, last_name"], tokenString: token, version: nil, httpMethod: "GET")
             req?.start(completionHandler: { (connection, result, error) in
                 if (error != nil) {
                     print("Failed to get user profile: \(error)");
                 } else {
                     print("Got profile user: \(result)");
                     let infoUser = result as! [String: Any];
-                    self.registerUser(email: infoUser["email"] as! String, firstName: infoUser["first_name"]  as! String, lastName: infoUser["last_name"] as! String, fbUserId: infoUser["id"]  as! String, fbUserToken: token);
+                    let fbUser = User(id: infoUser["id"]  as! String, email: infoUser["email"] as! String, fullName: infoUser["name"]  as! String, firstName: infoUser["first_name"]  as! String, lastName: infoUser["last_name"] as! String, token: token, type: UserType.FACEBOOK);
+                    self.registerUser(user: fbUser);
                 }
             })
         }
     }
     
-    // MARK: - Register User to Server
+    // MARK: - Google Sign In Performs
     
-    func registerUser(email: String, firstName: String, lastName: String, fbUserId: String, fbUserToken: String) {
+    func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
+        print("Google sign in will dispatch..");
+    }
+    
+    func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
+        print("Present googe sign in");
+        self.present(viewController, animated: true, completion: nil);
+    }
+    
+    func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
+        print("Dismiss googe sign in");
+        self.dismiss(animated: true, completion: nil);
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
+              withError error: Error!) {
+        if let error = error {
+            print("Failed to signn in using google: \(error.localizedDescription)")
+        } else {
+            // Perform any operations on signed in user here.
+            let userId = user.userID!                 // For client-side use only!
+            print("Got google user id: \(userId)");
+            let idToken = user.authentication.idToken! // Safe to send to the server
+            print("Got google user idToken: \(idToken)");
+            let fullName = user.profile.name!
+            print("Got google user fullName: \(fullName)");
+            let givenName = user.profile.givenName!
+            print("Got google user givenName: \(givenName)");
+            let familyName = user.profile.familyName!
+            print("Got google user familyName: \(familyName)");
+            let email = user.profile.email!
+            print("Got google user email: \(email)");
+            let gUser = User(id: userId, email: email, fullName: fullName, firstName: givenName, lastName: familyName, token: idToken, type: .GOOGLE);
+            self.registerUser(user: gUser);
+        }
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
+              withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
+    }
+    
+    // MARK: - Register User to Server
+    func registerUser(user: User) {
         let params: Parameters = [
-            "email": email,
-            "firtsname": firstName,
-            "lastname": lastName
+            "email": user.email,
+            "firtsname": user.firstName,
+            "lastname": user.lastName,
+            "role_id": 3
         ]
         print("Params to sign in: \(params)");
 
         SVProgressHUD.show();
-        Alamofire.request(AppUtils.SIGN_UP_API, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON(completionHandler: {
+        Alamofire.request(AppUtils.SIGN_UP_SOC_MED_API, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON(completionHandler: {
             response in
+            
+//            print("Response result value: \(response.result.value)");
 
             SVProgressHUD.dismiss();
 
-            if (response.result.isSuccess && response.response?.statusCode == 201) {
-                print("Sign up successfully...");
+            if (response.result.isSuccess && response.response?.statusCode == 200) {
+                print("Connect using '\(user.type)' successfully...");
+                
+                let infoLogin: JSON = JSON(response.result.value!);
 
                 var userSessionMap = AppUtils.USER_SESSION_MAP;
                 userSessionMap[AppUtils.IS_AUTHENTICATED] = true;
-                userSessionMap[AppUtils.USER_EMAIL] = email;
-                userSessionMap[AppUtils.FACEBOOK_USER_ID] = fbUserId;
-                userSessionMap[AppUtils.FACEBOOK_USER_TOKEN] = fbUserToken;
+                userSessionMap[AppUtils.USER_EMAIL] = user.email;
+                userSessionMap[AppUtils.USER_TOKEN] = infoLogin["data"]["token"].stringValue;
+                if (user.type == UserType.FACEBOOK) {
+                    userSessionMap[AppUtils.FACEBOOK_USER_ID] = user.id;
+                    userSessionMap[AppUtils.FACEBOOK_USER_TOKEN] = user.token;
+                }
+                if (user.type == UserType.GOOGLE) {
+                    userSessionMap[AppUtils.GOOGLE_USER_ID] = user.id;
+                    userSessionMap[AppUtils.GOOGLE_USER_TOKEN] = user.token;
+                }
 
                 print("userSessionMap: \(userSessionMap)");
 

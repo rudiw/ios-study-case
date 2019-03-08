@@ -10,6 +10,7 @@ import UIKit
 import SVProgressHUD
 import Alamofire
 import ChameleonFramework
+import SwiftyJSON
 
 
 class VCSignUp: UIViewController, UITextFieldDelegate {
@@ -162,11 +163,12 @@ class VCSignUp: UIViewController, UITextFieldDelegate {
             if (response.result.isSuccess && response.response?.statusCode == 201) {
                 print("Sign up successfully...");
                 
-//                let infoLogin: JSON = JSON(response.result.value!);
+                let infoLogin: JSON = JSON(response.result.value!);
                 
                 var userSessionMap = AppUtils.USER_SESSION_MAP;
                 userSessionMap[AppUtils.IS_AUTHENTICATED] = true;
                 userSessionMap[AppUtils.USER_EMAIL] = email;
+                userSessionMap[AppUtils.USER_TOKEN] = infoLogin["data"]["token"].stringValue;
                 
                 print("userSessionMap: \(userSessionMap)");
                 

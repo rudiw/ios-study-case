@@ -14,6 +14,7 @@ class AppUtils {
     public static let BASE_URL = "http://172.19.11.20:9090";
     public static let SIGN_IN_API = AppUtils.BASE_URL + "/auth";
     public static let SIGN_UP_API = AppUtils.BASE_URL + "/registration";
+    public static let SIGN_UP_SOC_MED_API = AppUtils.BASE_URL + "/auth/user/socialmedialogin";
     public static let FORGOT_PASSWORD_API = AppUtils.BASE_URL + "/forgot_password";
     
     // MARK: - Session Login Requirements
@@ -27,11 +28,18 @@ class AppUtils {
     public static let IS_AUTHENTICATED = "is_authenticated";
     public static let FACEBOOK_USER_ID = "facebook_user_id";
     public static let FACEBOOK_USER_TOKEN = "facebook_user_token";
+    public static let GOOGLE_USER_ID = "google_user_id";
+    public static let GOOGLE_USER_TOKEN = "google_user_token";
     public static let USER_SESSION_MAP: [String: Any?] = [AppUtils.USER_EMAIL : "",
                                                           AppUtils.USER_TOKEN : "",
                                                           AppUtils.IS_AUTHENTICATED: false,
                                                           AppUtils.FACEBOOK_USER_ID: "",
-                                                          AppUtils.FACEBOOK_USER_TOKEN: ""];
+                                                          AppUtils.FACEBOOK_USER_TOKEN: "",
+                                                          AppUtils.GOOGLE_USER_ID: "",
+                                                          AppUtils.GOOGLE_USER_TOKEN: ""];
+    
+//    client id google one click study case
+    public static let GOOGLE_CLIENT_ID = "1070994837926-ldftgse09qsii0iuc53goh6du74qebnc.apps.googleusercontent.com";
     
     // MARK: - Validate Email
     public static func validateEmail(candidate: String) -> Bool {

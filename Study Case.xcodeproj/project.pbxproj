@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4ABBE697AE9D2E4ADE01FF8F /* Pods_Study_Case.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED4836D2E7E84E976CC2035A /* Pods_Study_Case.framework */; };
 		B0869687222E4AB0004A8497 /* VCForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0869686222E4AB0004A8497 /* VCForgotPassword.swift */; };
+		B087ED2D2231F73C00643C16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B087ED2C2231F73C00643C16 /* GoogleService-Info.plist */; };
+		B087ED2F223201D500643C16 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B087ED2E223201D500643C16 /* User.swift */; };
 		B08819D6222CEFA4005E460B /* VCSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08819D5222CEFA4005E460B /* VCSignIn.swift */; };
 		B08819D8222D0218005E460B /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08819D7222D0218005E460B /* AppUtils.swift */; };
 		B0B5232C222E0D9900E6ACAA /* VCSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B5232B222E0D9900E6ACAA /* VCSignUp.swift */; };
@@ -24,6 +26,8 @@
 /* Begin PBXFileReference section */
 		7EA2D7A51F756155885C18DB /* Pods-Study Case.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Study Case.debug.xcconfig"; path = "Target Support Files/Pods-Study Case/Pods-Study Case.debug.xcconfig"; sourceTree = "<group>"; };
 		B0869686222E4AB0004A8497 /* VCForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCForgotPassword.swift; sourceTree = "<group>"; };
+		B087ED2C2231F73C00643C16 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Study Case/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		B087ED2E223201D500643C16 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B08819D5222CEFA4005E460B /* VCSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCSignIn.swift; sourceTree = "<group>"; };
 		B08819D7222D0218005E460B /* AppUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		B0B5232B222E0D9900E6ACAA /* VCSignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCSignUp.swift; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				B0D1C3F92223DAA000FD2D1F /* Dummy.swift */,
+				B087ED2E223201D500643C16 /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 		B0D1C4002223DCC400FD2D1F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B087ED2C2231F73C00643C16 /* GoogleService-Info.plist */,
 				B08819D7222D0218005E460B /* AppUtils.swift */,
 				B0D1C3E42223D59900FD2D1F /* Info.plist */,
 			);
@@ -150,6 +156,7 @@
 				B0D1C3D22223D58E00FD2D1F /* Frameworks */,
 				B0D1C3D32223D58E00FD2D1F /* Resources */,
 				67BFE59BBC9588133B4C056C /* [CP] Embed Pods Frameworks */,
+				BD02771426F3FD60B75C2651 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -199,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0D1C3E32223D59900FD2D1F /* LaunchScreen.storyboard in Resources */,
+				B087ED2D2231F73C00643C16 /* GoogleService-Info.plist in Resources */,
 				B0D1C3E02223D59900FD2D1F /* Assets.xcassets in Resources */,
 				B0D1C3DE2223D58E00FD2D1F /* Main.storyboard in Resources */,
 			);
@@ -221,6 +229,8 @@
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
@@ -233,12 +243,36 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Study Case/Pods-Study Case-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD02771426F3FD60B75C2651 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Study Case/Pods-Study Case-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Study Case/Pods-Study Case-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DDF3AED4CF4A68814BA12D02 /* [CP] Check Pods Manifest.lock */ = {
@@ -275,6 +309,7 @@
 				B0869687222E4AB0004A8497 /* VCForgotPassword.swift in Sources */,
 				B0D1C3DB2223D58E00FD2D1F /* ViewController.swift in Sources */,
 				B0D1C3FA2223DAA000FD2D1F /* Dummy.swift in Sources */,
+				B087ED2F223201D500643C16 /* User.swift in Sources */,
 				B0E0D576222F53870062FC81 /* VCConnect.swift in Sources */,
 				B08819D6222CEFA4005E460B /* VCSignIn.swift in Sources */,
 				B0D1C3D92223D58E00FD2D1F /* AppDelegate.swift in Sources */,

@@ -8,6 +8,7 @@
 
 import UIKit
 import FBSDKCoreKit
+import GoogleSignIn
 
 
 @UIApplicationMain
@@ -18,9 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        //facebook
         FBSDKApplicationDelegate.sharedInstance()?.application(application, didFinishLaunchingWithOptions: launchOptions);
         
+        //google
+        GIDSignIn.sharedInstance().clientID = AppUtils.GOOGLE_CLIENT_ID;
         
+        //check loggedIn in session
         if let _ = UserDefaults.standard.value(forKey: AppUtils.KEY_USER_SESSION) {
             //user is authenticated
             self.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController();
@@ -34,10 +39,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        let handled = FBSDKApplicationDelegate.sharedInstance()?.application(app, open: url, options: options);
-        return handled!;
+        //facebook
+        let handledFacebook = FBSDKApplicationDelegate.sharedInstance()?.application(app, open: url, options: options);
+        //google
+        let handledGoogle = GIDSignIn.sharedInstance()?.handle(url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplication.OpenURLOptionsKey.annotation]);
+        
+        return handledFacebook! && handledGoogle!;
     }
-
 
 }
 
