@@ -9,11 +9,12 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import ChameleonFramework
 
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UITableViewController {
     
-    @IBOutlet weak var tblCategory: UITableView!
+    var contents = ["category", "content1", "content2", "content3", "content4", "content5"];
     
     var listCategory: [Category] = [Category]();
     
@@ -26,11 +27,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         loadCategories();
         
-        tblCategory.delegate = self;
-        tblCategory.dataSource = self;
-        tblCategory.separatorStyle = .none;
-        //TODO: Register your CategoryCell.xib file here:
-        tblCategory.register(UINib(nibName: "CellCategory", bundle: nil), forCellReuseIdentifier: "myCellCategory");
+        self.tableView.rowHeight = UITableView.automaticDimension;
+        self.tableView.separatorStyle = .none;
+        self.tableView.register(UINib(nibName: "CellContentCategory", bundle: nil), forCellReuseIdentifier: "cellContentCategory");
+        
         
     }
     
@@ -56,7 +56,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
                 print("Loaded for \(self.listCategory.count) categories");
                 
-                self.tblCategory.reloadData();
+                self.tableView.reloadData();
             } else {
                 print("Failed to load categories with errorResponse: \(response.error)");
                 print("Failed to load categories with result: \(response.result.value)");
@@ -65,24 +65,37 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     // MARK: - Table View Configurations
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.listCategory.count;
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let content = contents[indexPath.row];
+        if (content == "category") {
+            return 151.0;
+        } else {
+            return super.tableView(tableView, heightForRowAt: indexPath);
+        }
+        
+    }
+   
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.contents.count;
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCellCategory", for: indexPath) as! CellCategory;
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let category = listCategory[indexPath.row];
-        cell.lblCategoryName.text  = category.name;
-        cell.imgCategory.image = UIImage(named: "category");
+        let content = contents[indexPath.row];
+        
+        var cell: UITableViewCell;
+        if (content == "category") {
+           let cellContentCategory = tableView.dequeueReusableCell(withIdentifier: "cellContentCategory", for: indexPath) as! CellContentCategory;
+            
+            cell = cellContentCategory;
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: "cellContent", for: indexPath);
+            cell.textLabel?.text = contents[indexPath.row];
+            cell.backgroundColor = UIColor.randomFlat;
+        }
         
         return cell;
-    }
-    
-    //TODO: Declare configureTableView here:
-    func configureTableView() {
-        tblCategory.rowHeight = UITableView.automaticDimension;
-        tblCategory.estimatedRowHeight = 151.0;
     }
 
 
