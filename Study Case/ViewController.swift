@@ -12,9 +12,10 @@ import SwiftyJSON
 import ChameleonFramework
 
 
-class ViewController: UITableViewController {
+class ViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource,
+    UICollectionViewDelegateFlowLayout {
     
-    var contents = ["category", "content1", "content2", "content3", "content4", "content5"];
+    var contents = ["category", "content1", "content2", "content3", "content4", "content5", "content6", "content7", "content8", "content9", "content10"];
     
     var listCategory: [Category] = [Category]();
     
@@ -25,7 +26,12 @@ class ViewController: UITableViewController {
         
         print("ViewController - view did load");
         
-        loadCategories();
+//        loadCategories();
+        listCategory.append(Category(id: 1, name: "category 1"));
+        listCategory.append(Category(id: 2, name: "category 2"));
+        listCategory.append(Category(id: 3, name: "category 3"));
+        listCategory.append(Category(id: 4, name: "category 4"));
+        listCategory.append(Category(id: 5, name: "category 5"));
         
         self.tableView.rowHeight = UITableView.automaticDimension;
         self.tableView.separatorStyle = .none;
@@ -71,7 +77,8 @@ class ViewController: UITableViewController {
         if (content == "category") {
             return 151.0;
         } else {
-            return super.tableView(tableView, heightForRowAt: indexPath);
+//            return super.tableView(tableView, heightForRowAt: indexPath);
+            return 88.0;
         }
         
     }
@@ -86,7 +93,11 @@ class ViewController: UITableViewController {
         
         var cell: UITableViewCell;
         if (content == "category") {
-           let cellContentCategory = tableView.dequeueReusableCell(withIdentifier: "cellContentCategory", for: indexPath) as! CellContentCategory;
+            let cellContentCategory = tableView.dequeueReusableCell(withIdentifier:  "cellContentCategory", for: indexPath) as! CellContentCategory;
+            
+            cellContentCategory.collViewCategory.dataSource = self;
+            cellContentCategory.collViewCategory.delegate = self;
+            cellContentCategory.collViewCategory.register(UINib(nibName: "CellCategory", bundle: nil), forCellWithReuseIdentifier: "cellCategory");
             
             cell = cellContentCategory;
         } else {
@@ -96,6 +107,27 @@ class ViewController: UITableViewController {
         }
         
         return cell;
+    }
+    
+    // MARK: - List Category View
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return listCategory.count;
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellCategory", for: indexPath) as! CellCategory;
+        
+        let category = listCategory[indexPath.row];
+        
+        cell.lblCategoryName.text = category.name;
+        cell.imgCategory.image = UIImage(named: "category");
+        
+        return cell;
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 151.0, height: 151.0);
     }
 
 

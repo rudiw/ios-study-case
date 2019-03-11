@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CellCategory: UITableViewCell {
+class CellCategory: UICollectionViewCell {
 
     @IBOutlet weak var imgCategory: UIImageView!
     @IBOutlet weak var lblCategoryName: UILabel!
@@ -17,8 +17,4 @@ class CellCategory: UITableViewCell {
         super.awakeFromNib()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
 }
