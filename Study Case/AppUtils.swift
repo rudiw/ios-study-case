@@ -16,6 +16,7 @@ class AppUtils {
     public static let SIGN_UP_API = AppUtils.BASE_URL + "/registration";
     public static let SIGN_UP_SOC_MED_API = AppUtils.BASE_URL + "/auth/user/socialmedialogin";
     public static let FORGOT_PASSWORD_API = AppUtils.BASE_URL + "/forgot_password";
+    public static let LIST_CATEGORY_API = AppUtils.BASE_URL + "/category";
     
     // MARK: - Session Login Requirements
     
@@ -51,6 +52,12 @@ class AppUtils {
     public static func validateEmail(candidate: String) -> Bool {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: candidate)
+    }
+    
+    public static func getUserToken() -> String {
+        let userSessionMap = UserDefaults.standard.value(forKey: AppUtils.KEY_USER_SESSION) as! [String: Any]
+        let userToken = userSessionMap[AppUtils.USER_TOKEN] as! String;
+        return userToken;
     }
     
 }

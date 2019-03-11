@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4ABBE697AE9D2E4ADE01FF8F /* Pods_Study_Case.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED4836D2E7E84E976CC2035A /* Pods_Study_Case.framework */; };
+		B03DE34C2235E9FC00B35294 /* VCCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03DE34B2235E9FC00B35294 /* VCCategory.swift */; };
+		B03DE34E2235F77500B35294 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03DE34D2235F77500B35294 /* Category.swift */; };
 		B0869687222E4AB0004A8497 /* VCForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0869686222E4AB0004A8497 /* VCForgotPassword.swift */; };
 		B087ED2D2231F73C00643C16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B087ED2C2231F73C00643C16 /* GoogleService-Info.plist */; };
 		B087ED2F223201D500643C16 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B087ED2E223201D500643C16 /* User.swift */; };
@@ -25,6 +27,8 @@
 
 /* Begin PBXFileReference section */
 		7EA2D7A51F756155885C18DB /* Pods-Study Case.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Study Case.debug.xcconfig"; path = "Target Support Files/Pods-Study Case/Pods-Study Case.debug.xcconfig"; sourceTree = "<group>"; };
+		B03DE34B2235E9FC00B35294 /* VCCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCCategory.swift; sourceTree = "<group>"; };
+		B03DE34D2235F77500B35294 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		B0869686222E4AB0004A8497 /* VCForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCForgotPassword.swift; sourceTree = "<group>"; };
 		B087ED2C2231F73C00643C16 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Study Case/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		B087ED2E223201D500643C16 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -91,6 +95,7 @@
 			children = (
 				B0D1C3F92223DAA000FD2D1F /* Dummy.swift */,
 				B087ED2E223201D500643C16 /* User.swift */,
+				B03DE34D2235F77500B35294 /* Category.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -113,6 +118,7 @@
 				B0B5232B222E0D9900E6ACAA /* VCSignUp.swift */,
 				B0869686222E4AB0004A8497 /* VCForgotPassword.swift */,
 				B0E0D575222F53870062FC81 /* VCConnect.swift */,
+				B03DE34B2235E9FC00B35294 /* VCCategory.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -310,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B03DE34C2235E9FC00B35294 /* VCCategory.swift in Sources */,
 				B0B5232C222E0D9900E6ACAA /* VCSignUp.swift in Sources */,
 				B08819D8222D0218005E460B /* AppUtils.swift in Sources */,
 				B0869687222E4AB0004A8497 /* VCForgotPassword.swift in Sources */,
@@ -319,6 +326,7 @@
 				B0E0D576222F53870062FC81 /* VCConnect.swift in Sources */,
 				B08819D6222CEFA4005E460B /* VCSignIn.swift in Sources */,
 				B0D1C3D92223D58E00FD2D1F /* AppDelegate.swift in Sources */,
+				B03DE34E2235F77500B35294 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
