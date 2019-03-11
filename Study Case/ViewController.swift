@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 
-class ViewController: UIViewController/*, UITableViewDelegate, UITableViewDataSource */ {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tblCategory: UITableView!
     
@@ -26,8 +26,12 @@ class ViewController: UIViewController/*, UITableViewDelegate, UITableViewDataSo
         
         loadCategories();
         
-//        tblCategory.delegate = self;
-//        tblCategory.dataSource = self;
+        tblCategory.delegate = self;
+        tblCategory.dataSource = self;
+        tblCategory.separatorStyle = .none;
+        //TODO: Register your CategoryCell.xib file here:
+        tblCategory.register(UINib(nibName: "CellCategory", bundle: nil), forCellReuseIdentifier: "myCellCategory");
+        
     }
     
     // MARK: - Load Categories
@@ -51,6 +55,8 @@ class ViewController: UIViewController/*, UITableViewDelegate, UITableViewDataSo
                     self.listCategory.append(category);
                 }
                 print("Loaded for \(self.listCategory.count) categories");
+                
+                self.tblCategory.reloadData();
             } else {
                 print("Failed to load categories with errorResponse: \(response.error)");
                 print("Failed to load categories with result: \(response.result.value)");
@@ -58,13 +64,26 @@ class ViewController: UIViewController/*, UITableViewDelegate, UITableViewDataSo
         }
     }
     
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 1;
-//    }
+    // MARK: - Table View Configurations
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.listCategory.count;
+    }
     
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        return UITableViewCell();
-//    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCellCategory", for: indexPath) as! CellCategory;
+        
+        let category = listCategory[indexPath.row];
+        cell.lblCategoryName.text  = category.name;
+        cell.imgCategory.image = UIImage(named: "category");
+        
+        return cell;
+    }
+    
+    //TODO: Declare configureTableView here:
+    func configureTableView() {
+        tblCategory.rowHeight = UITableView.automaticDimension;
+        tblCategory.estimatedRowHeight = 151.0;
+    }
 
 
 }
