@@ -26,18 +26,23 @@ class ViewController: UITableViewController, UICollectionViewDelegate, UICollect
         
         print("ViewController - view did load");
         
-//        loadCategories();
-        listCategory.append(Category(id: 1, name: "category 1"));
-        listCategory.append(Category(id: 2, name: "category 2"));
-        listCategory.append(Category(id: 3, name: "category 3"));
-        listCategory.append(Category(id: 4, name: "category 4"));
-        listCategory.append(Category(id: 5, name: "category 5"));
+        loadCategories();
+//        listCategory.append(Category(id: 1, name: "category 1"));
+//        listCategory.append(Category(id: 2, name: "category 2"));
+//        listCategory.append(Category(id: 3, name: "category 3"));
+//        listCategory.append(Category(id: 4, name: "category 4"));
+//        listCategory.append(Category(id: 5, name: "category 5"));
         
         self.tableView.rowHeight = UITableView.automaticDimension;
         self.tableView.separatorStyle = .none;
         self.tableView.register(UINib(nibName: "CellContentCategory", bundle: nil), forCellReuseIdentifier: "cellContentCategory");
-        
-        
+
+    }
+    
+    
+    // MARK: - View Will Appear
+    override func viewWillAppear(_ animated: Bool) {
+//        loadCategories();
     }
     
     // MARK: - Load Categories
@@ -62,7 +67,13 @@ class ViewController: UITableViewController, UICollectionViewDelegate, UICollect
                 }
                 print("Loaded for \(self.listCategory.count) categories");
                 
-                self.tableView.reloadData();
+                let firstCell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0));
+                if (firstCell is CellContentCategory) {
+                    let cellContentCategory = firstCell as! CellContentCategory;
+                    print("Reload category list view...");
+                    cellContentCategory.collViewCategory.reloadData();
+                }
+                
             } else {
                 print("Failed to load categories with errorResponse: \(response.error)");
                 print("Failed to load categories with result: \(response.result.value)");
@@ -98,7 +109,7 @@ class ViewController: UITableViewController, UICollectionViewDelegate, UICollect
             cellContentCategory.collViewCategory.dataSource = self;
             cellContentCategory.collViewCategory.delegate = self;
             cellContentCategory.collViewCategory.register(UINib(nibName: "CellCategory", bundle: nil), forCellWithReuseIdentifier: "cellCategory");
-            
+
             cell = cellContentCategory;
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: "cellContent", for: indexPath);
@@ -130,6 +141,10 @@ class ViewController: UITableViewController, UICollectionViewDelegate, UICollect
         return CGSize(width: 151.0, height: 151.0);
     }
 
+    // MARK: - Event Rotate
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        self.tableView.reloadData();
+    }
 
 }
 
