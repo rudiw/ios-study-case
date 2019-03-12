@@ -159,10 +159,9 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         }
         
         if (collectionView.tag == 1) {
-            let subCategory = subCategories[indexPath.row];
-            let sizeText = (subCategory.name as! NSString).size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)]);
-            
-            return CGSize(width: sizeText.width, height: 50.0);
+//            print("width: \(collectionView.frame.width)");
+//            print("div 2: \(collectionView.frame.width / 2)");
+            return CGSize(width: (collectionView.frame.width / 2), height: 50);
         }
         
         return CGSize(width: 0.0, height: 0.0);
