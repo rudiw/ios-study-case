@@ -10,6 +10,13 @@
 		4ABBE697AE9D2E4ADE01FF8F /* Pods_Study_Case.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED4836D2E7E84E976CC2035A /* Pods_Study_Case.framework */; };
 		B03DE34E2235F77500B35294 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03DE34D2235F77500B35294 /* Category.swift */; };
 		B049768E223740D6003ECF4C /* VCSubCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B049768D223740D6003ECF4C /* VCSubCategory.swift */; };
+		B049769122374676003ECF4C /* CellBannerSubCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B049768F22374676003ECF4C /* CellBannerSubCategory.swift */; };
+		B049769222374676003ECF4C /* CellBannerSubCategory.xib in Resources */ = {isa = PBXBuildFile; fileRef = B049769022374676003ECF4C /* CellBannerSubCategory.xib */; };
+		B049769522374B6F003ECF4C /* CellBreadcrumbSubCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B049769322374B6F003ECF4C /* CellBreadcrumbSubCategory.swift */; };
+		B049769622374B6F003ECF4C /* CellBreadcrumbSubCategory.xib in Resources */ = {isa = PBXBuildFile; fileRef = B049769422374B6F003ECF4C /* CellBreadcrumbSubCategory.xib */; };
+		B049769922374C99003ECF4C /* CellBreadcrumb.swift in Sources */ = {isa = PBXBuildFile; fileRef = B049769722374C99003ECF4C /* CellBreadcrumb.swift */; };
+		B049769A22374C99003ECF4C /* CellBreadcrumb.xib in Resources */ = {isa = PBXBuildFile; fileRef = B049769822374C99003ECF4C /* CellBreadcrumb.xib */; };
+		B049769C22374E01003ECF4C /* Breadcrumb.swift in Sources */ = {isa = PBXBuildFile; fileRef = B049769B22374E01003ECF4C /* Breadcrumb.swift */; };
 		B0869687222E4AB0004A8497 /* VCForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0869686222E4AB0004A8497 /* VCForgotPassword.swift */; };
 		B087ED2D2231F73C00643C16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B087ED2C2231F73C00643C16 /* GoogleService-Info.plist */; };
 		B087ED2F223201D500643C16 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B087ED2E223201D500643C16 /* User.swift */; };
@@ -33,6 +40,13 @@
 		7EA2D7A51F756155885C18DB /* Pods-Study Case.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Study Case.debug.xcconfig"; path = "Target Support Files/Pods-Study Case/Pods-Study Case.debug.xcconfig"; sourceTree = "<group>"; };
 		B03DE34D2235F77500B35294 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		B049768D223740D6003ECF4C /* VCSubCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCSubCategory.swift; sourceTree = "<group>"; };
+		B049768F22374676003ECF4C /* CellBannerSubCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellBannerSubCategory.swift; sourceTree = "<group>"; };
+		B049769022374676003ECF4C /* CellBannerSubCategory.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellBannerSubCategory.xib; sourceTree = "<group>"; };
+		B049769322374B6F003ECF4C /* CellBreadcrumbSubCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellBreadcrumbSubCategory.swift; sourceTree = "<group>"; };
+		B049769422374B6F003ECF4C /* CellBreadcrumbSubCategory.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellBreadcrumbSubCategory.xib; sourceTree = "<group>"; };
+		B049769722374C99003ECF4C /* CellBreadcrumb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellBreadcrumb.swift; sourceTree = "<group>"; };
+		B049769822374C99003ECF4C /* CellBreadcrumb.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellBreadcrumb.xib; sourceTree = "<group>"; };
+		B049769B22374E01003ECF4C /* Breadcrumb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breadcrumb.swift; sourceTree = "<group>"; };
 		B0869686222E4AB0004A8497 /* VCForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCForgotPassword.swift; sourceTree = "<group>"; };
 		B087ED2C2231F73C00643C16 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Study Case/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		B087ED2E223201D500643C16 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -104,6 +118,7 @@
 				B0D1C3F92223DAA000FD2D1F /* Dummy.swift */,
 				B087ED2E223201D500643C16 /* User.swift */,
 				B03DE34D2235F77500B35294 /* Category.swift */,
+				B049769B22374E01003ECF4C /* Breadcrumb.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -117,6 +132,12 @@
 				B0CCDE8C223612C2001C6498 /* CellContentCategory.xib */,
 				B0CCDE8F22362B89001C6498 /* CellCategory.swift */,
 				B0CCDE9022362B89001C6498 /* CellCategory.xib */,
+				B049768F22374676003ECF4C /* CellBannerSubCategory.swift */,
+				B049769022374676003ECF4C /* CellBannerSubCategory.xib */,
+				B049769322374B6F003ECF4C /* CellBreadcrumbSubCategory.swift */,
+				B049769422374B6F003ECF4C /* CellBreadcrumbSubCategory.xib */,
+				B049769722374C99003ECF4C /* CellBreadcrumb.swift */,
+				B049769822374C99003ECF4C /* CellBreadcrumb.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -223,10 +244,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B049769A22374C99003ECF4C /* CellBreadcrumb.xib in Resources */,
 				B0D1C3E32223D59900FD2D1F /* LaunchScreen.storyboard in Resources */,
+				B049769222374676003ECF4C /* CellBannerSubCategory.xib in Resources */,
 				B087ED2D2231F73C00643C16 /* GoogleService-Info.plist in Resources */,
 				B0CCDE8E223612C2001C6498 /* CellContentCategory.xib in Resources */,
 				B0CCDE9222362B89001C6498 /* CellCategory.xib in Resources */,
+				B049769622374B6F003ECF4C /* CellBreadcrumbSubCategory.xib in Resources */,
 				B0D1C3E02223D59900FD2D1F /* Assets.xcassets in Resources */,
 				B0D1C3DE2223D58E00FD2D1F /* Main.storyboard in Resources */,
 			);
@@ -336,10 +360,14 @@
 				B0CCDE8D223612C2001C6498 /* CellContentCategory.swift in Sources */,
 				B049768E223740D6003ECF4C /* VCSubCategory.swift in Sources */,
 				B0D1C3DB2223D58E00FD2D1F /* ViewController.swift in Sources */,
+				B049769C22374E01003ECF4C /* Breadcrumb.swift in Sources */,
+				B049769922374C99003ECF4C /* CellBreadcrumb.swift in Sources */,
+				B049769522374B6F003ECF4C /* CellBreadcrumbSubCategory.swift in Sources */,
 				B0D1C3FA2223DAA000FD2D1F /* Dummy.swift in Sources */,
 				B087ED2F223201D500643C16 /* User.swift in Sources */,
 				B0CCDE9122362B89001C6498 /* CellCategory.swift in Sources */,
 				B0E0D576222F53870062FC81 /* VCConnect.swift in Sources */,
+				B049769122374676003ECF4C /* CellBannerSubCategory.swift in Sources */,
 				B08819D6222CEFA4005E460B /* VCSignIn.swift in Sources */,
 				B0D1C3D92223D58E00FD2D1F /* AppDelegate.swift in Sources */,
 				B03DE34E2235F77500B35294 /* Category.swift in Sources */,

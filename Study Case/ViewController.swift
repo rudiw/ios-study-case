@@ -28,12 +28,12 @@ class ViewController: UITableViewController, UICollectionViewDelegate, UICollect
         
         print("ViewController - view did load");
         
-        loadCategories();
-//        listCategory.append(Category(id: 1, name: "category 1"));
-//        listCategory.append(Category(id: 2, name: "category 2"));
-//        listCategory.append(Category(id: 3, name: "category 3"));
-//        listCategory.append(Category(id: 4, name: "category 4"));
-//        listCategory.append(Category(id: 5, name: "category 5"));
+//        loadCategories();
+        listCategory.append(Category(id: 1, name: "category 1"));
+        listCategory.append(Category(id: 2, name: "category 2"));
+        listCategory.append(Category(id: 3, name: "category 3"));
+        listCategory.append(Category(id: 4, name: "category 4"));
+        listCategory.append(Category(id: 5, name: "category 5"));
         
         self.tableView.rowHeight = UITableView.automaticDimension;
         self.tableView.separatorStyle = .none;
@@ -44,7 +44,7 @@ class ViewController: UITableViewController, UICollectionViewDelegate, UICollect
     
     // MARK: - View Will Appear
     override func viewWillAppear(_ animated: Bool) {
-//        loadCategories();
+
     }
     
     // MARK: - Load Categories
