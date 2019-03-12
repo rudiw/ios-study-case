@@ -492,7 +492,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Home" id="7Ci-e4-q0J"/>
                     <connections>
-                        <segue destination="zRy-Oh-3Bh" kind="show" identifier="viewControllerToVcSubCategory" id="iTa-0X-sZ3"/>
+                        <segue destination="zRy-Oh-3Bh" kind="show" id="iTa-0X-sZ3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iQZ-vm-BDg" userLabel="First Responder" sceneMemberID="firstResponder"/>

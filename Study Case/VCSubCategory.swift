@@ -36,7 +36,12 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         tableView.register(UINib(nibName: "CellBannerSubCategory", bundle: nil), forCellReuseIdentifier: "cellBannerSubCategory");
         tableView.register(UINib(nibName: "CellBreadcrumbSubCategory", bundle: nil), forCellReuseIdentifier: "cellBreadcrumbSubCategory");
         
-        loadSubCategories();
+//        loadSubCategories();
+        subCategories.append(Category(id: 1, name: "sub category 1"));
+        subCategories.append(Category(id: 2, name: "sub category 2"));
+        subCategories.append(Category(id: 3, name: "sub category 3"));
+        subCategories.append(Category(id: 4, name: "sub category 4"));
+        subCategories.append(Category(id: 5, name: "sub category 5"));
     }
     
     //MARK: - Update NavBar
@@ -86,8 +91,15 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
             cellBreadcrumb.collectionView.register(UINib(nibName: "CellBreadcrumb", bundle: nil), forCellWithReuseIdentifier: "cellBreadcrumb");
             
             cell = cellBreadcrumb;
+        } else if contents[indexPath.row] == "subcategory" {
+            let cellSubCategory = tableView.dequeueReusableCell(withIdentifier: "cellSubCategoriesSubCategory", for: indexPath) as! CellSubCategoriesSubCategory;
+            cellSubCategory.collectionView.dataSource = self;
+            cellSubCategory.collectionView.delegate = self;
+            cellSubCategory.collectionView.register(UINib(nibName: "CellSubCategory", bundle: nil), forCellWithReuseIdentifier: "cellSubCategory");
+            
+            cell = cellSubCategory;
         } else {
-            cell = tableView.dequeueReusableCell(withIdentifier: "cellSubCategory", for: indexPath);
+            cell = tableView.dequeueReusableCell(withIdentifier: "cellVCSubCategory", for: indexPath);
             cell.textLabel?.text = contents[indexPath.row];
             cell.backgroundColor = UIColor.randomFlat;
         }
@@ -102,21 +114,41 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let breadcrumb = breadcrumbs[indexPath.row];
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellBreadcrumb", for: indexPath) as! CellBreadcrumb;
-        var txtBreadcrumb = breadcrumb.name;
-        if (breadcrumb.child != nil) {
-            cell.lblBreadcrumb.textColor = UIColor.purple;
+        if (collectionView.tag == 0) {
+            let breadcrumb = breadcrumbs[indexPath.row];
+            let cellBreadcrumb = collectionView.dequeueReusableCell(withReuseIdentifier: "cellBreadcrumb", for: indexPath) as! CellBreadcrumb;
+            var txtBreadcrumb = breadcrumb.name;
+            if (breadcrumb.child != nil) {
+                cellBreadcrumb.lblBreadcrumb.textColor = UIColor.purple;
+            }
+            cellBreadcrumb.lblBreadcrumb.text = txtBreadcrumb;
+            
+            return cellBreadcrumb;
         }
-        cell.lblBreadcrumb.text = txtBreadcrumb;
-        return cell;
+        if (collectionView.tag == 1) {
+            let subCategory = subCategories[indexPath.row];
+            let cellSubCategory = collectionView.dequeueReusableCell(withReuseIdentifier: "cellSubCategory", for: indexPath) as! CellSubCategory;
+            cellSubCategory.lblSubCategoryName.text = subCategory.name;
+            
+            return cellSubCategory;
+        }
+        
+        return UICollectionViewCell(frame: CGRect(x: 0, y: 0, width: 0, height: 0));
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let breadcrumb = breadcrumbs[indexPath.row];
-        let sizeText = (breadcrumb.name as! NSString).size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)]);
+        if (collectionView.tag == 0) {
+            let breadcrumb = breadcrumbs[indexPath.row];
+            let sizeText = (breadcrumb.name as! NSString).size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)]);
+            
+            return CGSize(width: sizeText.width, height: 44.0);
+        }
         
-        return CGSize(width: sizeText.width, height: 44.0);
+        if (collectionView.tag == 1) {
+            return CGSize(width: <#T##CGFloat#>, height: <#T##CGFloat#>)
+        }
+        
+        return CGSize(width: 0.0, height: 0.0);
     }
     
     //MARK: - Load Sub Categories

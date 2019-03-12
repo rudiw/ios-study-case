@@ -17,6 +17,10 @@
 		B049769922374C99003ECF4C /* CellBreadcrumb.swift in Sources */ = {isa = PBXBuildFile; fileRef = B049769722374C99003ECF4C /* CellBreadcrumb.swift */; };
 		B049769A22374C99003ECF4C /* CellBreadcrumb.xib in Resources */ = {isa = PBXBuildFile; fileRef = B049769822374C99003ECF4C /* CellBreadcrumb.xib */; };
 		B049769C22374E01003ECF4C /* Breadcrumb.swift in Sources */ = {isa = PBXBuildFile; fileRef = B049769B22374E01003ECF4C /* Breadcrumb.swift */; };
+		B049769F22377C96003ECF4C /* CellSubCategoriesSubCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B049769D22377C96003ECF4C /* CellSubCategoriesSubCategory.swift */; };
+		B04976A022377C96003ECF4C /* CellSubCategoriesSubCategory.xib in Resources */ = {isa = PBXBuildFile; fileRef = B049769E22377C96003ECF4C /* CellSubCategoriesSubCategory.xib */; };
+		B04976A3223781EA003ECF4C /* CellSubCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04976A1223781EA003ECF4C /* CellSubCategory.swift */; };
+		B04976A4223781EA003ECF4C /* CellSubCategory.xib in Resources */ = {isa = PBXBuildFile; fileRef = B04976A2223781EA003ECF4C /* CellSubCategory.xib */; };
 		B0869687222E4AB0004A8497 /* VCForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0869686222E4AB0004A8497 /* VCForgotPassword.swift */; };
 		B087ED2D2231F73C00643C16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B087ED2C2231F73C00643C16 /* GoogleService-Info.plist */; };
 		B087ED2F223201D500643C16 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B087ED2E223201D500643C16 /* User.swift */; };
@@ -47,6 +51,10 @@
 		B049769722374C99003ECF4C /* CellBreadcrumb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellBreadcrumb.swift; sourceTree = "<group>"; };
 		B049769822374C99003ECF4C /* CellBreadcrumb.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellBreadcrumb.xib; sourceTree = "<group>"; };
 		B049769B22374E01003ECF4C /* Breadcrumb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breadcrumb.swift; sourceTree = "<group>"; };
+		B049769D22377C96003ECF4C /* CellSubCategoriesSubCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSubCategoriesSubCategory.swift; sourceTree = "<group>"; };
+		B049769E22377C96003ECF4C /* CellSubCategoriesSubCategory.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellSubCategoriesSubCategory.xib; sourceTree = "<group>"; };
+		B04976A1223781EA003ECF4C /* CellSubCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSubCategory.swift; sourceTree = "<group>"; };
+		B04976A2223781EA003ECF4C /* CellSubCategory.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellSubCategory.xib; sourceTree = "<group>"; };
 		B0869686222E4AB0004A8497 /* VCForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCForgotPassword.swift; sourceTree = "<group>"; };
 		B087ED2C2231F73C00643C16 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Study Case/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		B087ED2E223201D500643C16 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -138,6 +146,10 @@
 				B049769422374B6F003ECF4C /* CellBreadcrumbSubCategory.xib */,
 				B049769722374C99003ECF4C /* CellBreadcrumb.swift */,
 				B049769822374C99003ECF4C /* CellBreadcrumb.xib */,
+				B049769D22377C96003ECF4C /* CellSubCategoriesSubCategory.swift */,
+				B049769E22377C96003ECF4C /* CellSubCategoriesSubCategory.xib */,
+				B04976A1223781EA003ECF4C /* CellSubCategory.swift */,
+				B04976A2223781EA003ECF4C /* CellSubCategory.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -244,6 +256,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B04976A4223781EA003ECF4C /* CellSubCategory.xib in Resources */,
+				B04976A022377C96003ECF4C /* CellSubCategoriesSubCategory.xib in Resources */,
 				B049769A22374C99003ECF4C /* CellBreadcrumb.xib in Resources */,
 				B0D1C3E32223D59900FD2D1F /* LaunchScreen.storyboard in Resources */,
 				B049769222374676003ECF4C /* CellBannerSubCategory.xib in Resources */,
@@ -367,6 +381,8 @@
 				B087ED2F223201D500643C16 /* User.swift in Sources */,
 				B0CCDE9122362B89001C6498 /* CellCategory.swift in Sources */,
 				B0E0D576222F53870062FC81 /* VCConnect.swift in Sources */,
+				B049769F22377C96003ECF4C /* CellSubCategoriesSubCategory.swift in Sources */,
+				B04976A3223781EA003ECF4C /* CellSubCategory.swift in Sources */,
 				B049769122374676003ECF4C /* CellBannerSubCategory.swift in Sources */,
 				B08819D6222CEFA4005E460B /* VCSignIn.swift in Sources */,
 				B0D1C3D92223D58E00FD2D1F /* AppDelegate.swift in Sources */,
