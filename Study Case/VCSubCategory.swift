@@ -35,6 +35,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         
         tableView.register(UINib(nibName: "CellBannerSubCategory", bundle: nil), forCellReuseIdentifier: "cellBannerSubCategory");
         tableView.register(UINib(nibName: "CellBreadcrumbSubCategory", bundle: nil), forCellReuseIdentifier: "cellBreadcrumbSubCategory");
+        tableView.register(UINib(nibName: "CellSubCategoriesSubCategory", bundle: nil), forCellReuseIdentifier: "cellSubCategoriesSubCategory");
         
 //        loadSubCategories();
         subCategories.append(Category(id: 1, name: "sub category 1"));
@@ -99,7 +100,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
             
             cell = cellSubCategory;
         } else {
-            cell = tableView.dequeueReusableCell(withIdentifier: "cellVCSubCategory", for: indexPath);
+            cell = tableView.dequeueReusableCell(withIdentifier: "cellVcSubCategory2", for: indexPath);
             cell.textLabel?.text = contents[indexPath.row];
             cell.backgroundColor = UIColor.randomFlat;
         }
@@ -110,7 +111,13 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     // MARK: - Collection View Configuration
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return breadcrumbs.count;
+        if (collectionView.tag == 0) {
+            return breadcrumbs.count;
+        }
+        if (collectionView.tag == 1) {
+            return subCategories.count;
+        }
+        return 0;
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -145,7 +152,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         }
         
         if (collectionView.tag == 1) {
-            return CGSize(width: <#T##CGFloat#>, height: <#T##CGFloat#>)
+            return CGSize(width: 100.0, height: 50.0);
         }
         
         return CGSize(width: 0.0, height: 0.0);
