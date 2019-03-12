@@ -19,19 +19,27 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="175.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="sCW-Sc-29c">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="176"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="sCW-Sc-29c">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="175.5"/>
+                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jwj-w7-Oi1">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="sCW-Sc-29c" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="6r5-qt-X16"/>
+                    <constraint firstItem="sCW-Sc-29c" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Eqw-mm-tWv"/>
+                    <constraint firstItem="sCW-Sc-29c" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dMu-Fz-bW2"/>
+                    <constraint firstAttribute="trailing" secondItem="sCW-Sc-29c" secondAttribute="trailing" id="fEd-Tv-x0v"/>
+                    <constraint firstAttribute="bottom" secondItem="sCW-Sc-29c" secondAttribute="bottom" id="vIB-Si-IpE"/>
+                    <constraint firstItem="sCW-Sc-29c" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="yh6-YC-ENt"/>
+                </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="collectionView" destination="sCW-Sc-29c" id="7Qz-oM-bOQ"/>

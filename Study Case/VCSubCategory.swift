@@ -39,10 +39,15 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         
 //        loadSubCategories();
         subCategories.append(Category(id: 1, name: "sub category 1"));
-        subCategories.append(Category(id: 2, name: "sub category 2"));
-        subCategories.append(Category(id: 3, name: "sub category 3"));
-        subCategories.append(Category(id: 4, name: "sub category 4"));
-        subCategories.append(Category(id: 5, name: "sub category 5"));
+        subCategories.append(Category(id: 2, name: "sub category 2 tambah yaa"));
+        subCategories.append(Category(id: 3, name: "sub category"));
+        subCategories.append(Category(id: 4, name: "sub 4"));
+        subCategories.append(Category(id: 5, name: "sub cat 5"));
+        subCategories.append(Category(id: 5, name: "sub cate 6"));
+        subCategories.append(Category(id: 5, name: "sub category 777"));
+        subCategories.append(Category(id: 5, name: "sub catee 8"));
+        subCategories.append(Category(id: 5, name: "sub cat 9"));
+        subCategories.append(Category(id: 5, name: "sub cat 10 lhooo .."));
     }
     
     //MARK: - Update NavBar
@@ -71,7 +76,9 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         if (contents[indexPath.row] == "banner") {
             return 96.0;
         } else if (contents[indexPath.row] == "breadcrumb") {
-            return 44.0
+            return 43.5
+        } else if (contents[indexPath.row] == "subcategory") {
+            return 176.0
         } else {
             return 88.0;
         }
@@ -152,7 +159,10 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         }
         
         if (collectionView.tag == 1) {
-            return CGSize(width: 100.0, height: 50.0);
+            let subCategory = subCategories[indexPath.row];
+            let sizeText = (subCategory.name as! NSString).size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)]);
+            
+            return CGSize(width: sizeText.width, height: 50.0);
         }
         
         return CGSize(width: 0.0, height: 0.0);
@@ -192,4 +202,8 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         }
     }
     
+    // MARK: - Event Rotate
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        self.tableView.reloadData();
+    }
 }
