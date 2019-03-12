@@ -13,10 +13,17 @@ class Category {
     
     var id: Int;
     var name: String;
+    var parent: Category?
     
     init(id: Int, name: String) {
         self.id = id;
         self.name = name;
+    }
+    
+    init(id: Int, name: String, parent: Category) {
+        self.id = id;
+        self.name = name;
+        self.parent = parent;
     }
     
     

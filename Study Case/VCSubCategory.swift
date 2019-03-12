@@ -8,6 +8,8 @@
 
 import UIKit
 import ChameleonFramework
+import Alamofire
+import SwiftyJSON
 
 
 class VCSubCategory: UITableViewController, UICollectionViewDataSource,
@@ -15,6 +17,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     var parentCategory: Category?
     var breadcrumbs: [Breadcrumb] = [Breadcrumb]();
+    var subCategories: [Category] = [Category]();
     
     var contents: [String] = ["banner", "breadcrumb", "subcategory", "product"];
     
@@ -26,12 +29,14 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         title = parentCategory!.name;
         
         let categoryBreadcrumb = Breadcrumb(id: "\(parentCategory!.id)", name: parentCategory!.name, child: nil);
-        let rootBreadcrumb = Breadcrumb(id: "home", name: "Home > ", child: categoryBreadcrumb);
+        let rootBreadcrumb = Breadcrumb(id: "home", name: "Home >", child: categoryBreadcrumb);
         breadcrumbs.append(rootBreadcrumb);
         breadcrumbs.append(categoryBreadcrumb);
         
         tableView.register(UINib(nibName: "CellBannerSubCategory", bundle: nil), forCellReuseIdentifier: "cellBannerSubCategory");
         tableView.register(UINib(nibName: "CellBreadcrumbSubCategory", bundle: nil), forCellReuseIdentifier: "cellBreadcrumbSubCategory");
+        
+        loadSubCategories();
     }
     
     //MARK: - Update NavBar
@@ -112,6 +117,40 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         let sizeText = (breadcrumb.name as! NSString).size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)]);
         
         return CGSize(width: sizeText.width, height: 44.0);
+    }
+    
+    //MARK: - Load Sub Categories
+    func loadSubCategories() {
+        let userToken = AppUtils.getUserToken();
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(userToken)",
+            "Accept": "application/json"
+        ]
+        
+        Alamofire.request(AppUtils.LIST_SUB_CATEGORY_API + "\(parentCategory!.id)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            
+            if (response.response?.statusCode == 200) {
+                print("Load sub categories by parent \(self.parentCategory!.id) successfully...");
+                let json: JSON = JSON(response.result.value);
+                for data in json["data"] {
+                    //                    print("categoryJson: \(data.1)");
+                    let category = Category(id: data.1["subcategory_id"].intValue, name: data.1["subcategory_name"].stringValue, parent: self.parentCategory!);
+                    self.subCategories.append(category);
+                }
+                print("Loaded for \(self.subCategories.count) sub categories by parent \(self.parentCategory!.name)");
+                
+//                let firstCell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0));
+//                if (firstCell is CellContentCategory) {
+//                    let cellContentCategory = firstCell as! CellContentCategory;
+//                    print("Reload sub category list view...");
+//                    cellContentCategory.collViewCategory.reloadData();
+//                }
+                
+            } else {
+                print("Failed to load categories with errorResponse: \(response.error)");
+                print("Failed to load categories with result: \(response.result.value)");
+            }
+        }
     }
     
 }

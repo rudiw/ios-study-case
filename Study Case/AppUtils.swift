@@ -17,6 +17,7 @@ class AppUtils {
     public static let SIGN_UP_SOC_MED_API = AppUtils.BASE_URL + "/auth/user/socialmedialogin";
     public static let FORGOT_PASSWORD_API = AppUtils.BASE_URL + "/forgot_password";
     public static let LIST_CATEGORY_API = AppUtils.BASE_URL + "/category";
+    public static let LIST_SUB_CATEGORY_API = AppUtils.BASE_URL + "/subcategory/getbycategory/";
     
     // MARK: - Session Login Requirements
     
