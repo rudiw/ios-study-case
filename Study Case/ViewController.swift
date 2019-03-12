@@ -19,6 +19,8 @@ class ViewController: UITableViewController, UICollectionViewDelegate, UICollect
     
     var listCategory: [Category] = [Category]();
     
+    var selectedParentCategory: Category?
+    
     // MARK: - View Did Load
 
     override func viewDidLoad() {
@@ -140,10 +142,26 @@ class ViewController: UITableViewController, UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 151.0, height: 151.0);
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedParentCategory = listCategory[indexPath.row]
+//        print("Selected at \(indexPath.row) category: \(selectedParentCategory.name)");
+        
+        performSegue(withIdentifier: "viewControllerToVcSubCategory", sender: self);
+    }
 
     // MARK: - Event Rotate
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         self.tableView.reloadData();
+    }
+    
+    // MARK: - Prepare Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination;
+        if (destination is VCSubCategory) {
+            let vcSubCategory = destination as! VCSubCategory;
+            vcSubCategory.parentCategory = selectedParentCategory!;
+        }
     }
 
 }
