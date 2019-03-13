@@ -20,6 +20,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     var subCategories: [Category] = [Category]();
     
     var contents: [String] = ["banner", "breadcrumb", "subcategory", "product"];
+    var canShowMore: Bool = true;
     
     // MARK: - View Did Load
     
@@ -33,9 +34,13 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         breadcrumbs.append(rootBreadcrumb);
         breadcrumbs.append(categoryBreadcrumb);
         
+//        tableView.estimatedRowHeight = 50;
+//        tableView.rowHeight = UITableView.automaticDimension;
+        
         tableView.register(UINib(nibName: "CellBannerSubCategory", bundle: nil), forCellReuseIdentifier: "cellBannerSubCategory");
         tableView.register(UINib(nibName: "CellBreadcrumbSubCategory", bundle: nil), forCellReuseIdentifier: "cellBreadcrumbSubCategory");
         tableView.register(UINib(nibName: "CellSubCategoriesSubCategory", bundle: nil), forCellReuseIdentifier: "cellSubCategoriesSubCategory");
+        tableView.register(UINib(nibName: "CellHideShowMoreSubCategory", bundle: nil), forCellReuseIdentifier: "cellHideShowMoreSubCategory");
         
 //        loadSubCategories();
         subCategories.append(Category(id: 1, name: "sub category 1"));
@@ -47,7 +52,8 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         subCategories.append(Category(id: 5, name: "sub category 777"));
         subCategories.append(Category(id: 5, name: "sub catee 8"));
         subCategories.append(Category(id: 5, name: "sub cat 9"));
-        subCategories.append(Category(id: 5, name: "sub cat 10 lhooo .."));
+//        subCategories.append(Category(id: 5, name: "sub cat 10 lhooo .."));
+        addShowOrLessMore(self.tableView.frame.width);
     }
     
     //MARK: - Update NavBar
@@ -57,7 +63,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func updateNavBar() {
         guard let navbar = navigationController?.navigationBar else {
-            fatalError("Navigation controller does not exist in VCSubCategory");
+            fatalError("VCSubCategory| Navigation controller does not exist in VCSubCategory");
         }
         
 //        guard let navbarColor = UIColor(hexString: colorHexCode) else {fatalError("Navbar color from category must not be null!")}
@@ -76,11 +82,20 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         if (contents[indexPath.row] == "banner") {
             return 96.0;
         } else if (contents[indexPath.row] == "breadcrumb") {
-            return 43.5
+            return 43.5;
         } else if (contents[indexPath.row] == "subcategory") {
-            return 176.0
+            let divider = CGFloat(subCategories.count) / (self.tableView.frame.width / 175);
+            if (divider > 2) {
+                return 150.0
+            } else if (divider > 1) {
+                return 100.0
+            } else {
+                return 50.0
+            }
+        } else if (contents[indexPath.row] == "show_hide_more") {
+            return 44.0;
         } else {
-            return 88.0;
+            return 88;
         }
     }
     
@@ -106,13 +121,26 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
             cellSubCategory.collectionView.register(UINib(nibName: "CellSubCategory", bundle: nil), forCellWithReuseIdentifier: "cellSubCategory");
             
             cell = cellSubCategory;
+        } else if (contents[indexPath.row] == "show_hide_more") {
+            cell = tableView.dequeueReusableCell(withIdentifier: "cellHideShowMoreSubCategory", for: indexPath);
+            cell.textLabel?.text = canShowMore ? "Show More" : "Show Less";
+            cell.textLabel?.textColor = UIColor.purple;
+            cell.textLabel?.textAlignment = .center;
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: "cellVcSubCategory2", for: indexPath);
             cell.textLabel?.text = contents[indexPath.row];
             cell.backgroundColor = UIColor.randomFlat;
+            
         }
         
         return cell;
+    }
+    
+    // MARK: - Did Select Table View
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (contents[indexPath.row] == "show_hide_more") {
+            print("VCSubCategory| show or hide more...");
+        }
     }
     
     // MARK: - Collection View Configuration
@@ -159,9 +187,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         }
         
         if (collectionView.tag == 1) {
-//            print("width: \(collectionView.frame.width)");
-//            print("div 2: \(collectionView.frame.width / 2)");
-            return CGSize(width: (collectionView.frame.width / 2) - 20, height: 50);
+            return CGSize(width: 175, height: 50);
         }
         
         return CGSize(width: 0.0, height: 0.0);
@@ -188,14 +214,14 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         Alamofire.request(AppUtils.LIST_SUB_CATEGORY_API + "\(parentCategory!.id)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
             
             if (response.response?.statusCode == 200) {
-                print("Load sub categories by parent \(self.parentCategory!.id) successfully...");
+                print("VCSubCategory| Load sub categories by parent \(self.parentCategory!.id) successfully...");
                 let json: JSON = JSON(response.result.value);
                 for data in json["data"] {
                     //                    print("categoryJson: \(data.1)");
                     let category = Category(id: data.1["subcategory_id"].intValue, name: data.1["subcategory_name"].stringValue, parent: self.parentCategory!);
                     self.subCategories.append(category);
                 }
-                print("Loaded for \(self.subCategories.count) sub categories by parent \(self.parentCategory!.name)");
+                print("VCSubCategory| Loaded for \(self.subCategories.count) sub categories by parent \(self.parentCategory!.name)");
                 
 //                let firstCell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0));
 //                if (firstCell is CellContentCategory) {
@@ -205,14 +231,38 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 //                }
                 
             } else {
-                print("Failed to load categories with errorResponse: \(response.error)");
-                print("Failed to load categories with result: \(response.result.value)");
+                print("VCSubCategory| Failed to load categories with errorResponse: \(response.error)");
+                print("VCSubCategory| Failed to load categories with result: \(response.result.value)");
             }
         }
     }
     
     // MARK: - Event Rotate
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        self.tableView.reloadData();
+        
+        addShowOrLessMore(size.width);
+        
+//        self.tableView.reloadData();
     }
+    
+    // MARK: - Add Show Or Less More
+    func addShowOrLessMore(_ width: CGFloat) {
+//        print("VCSubCategory| width table: \(width)");
+//        print("VCSubCategory| count: \(subCategories.count)");
+        let div = CGFloat(subCategories.count) / (width / 175);
+//        print("VCSubCategory| div: \(div)");
+        
+        if (div > 3 && contents[3] != "show_hide_more") {
+//            print("VCSubCategory| inserting show/hide more");
+            contents.insert("show_hide_more", at: 3);
+            tableView.reloadData();
+        } else {
+            if (contents[3] == "show_hide_more") {
+//                print("VCSubCategory| removing show/hide more");
+                contents.remove(at: 3)
+                tableView.reloadData();
+            }
+        }
+    }
+    
 }
