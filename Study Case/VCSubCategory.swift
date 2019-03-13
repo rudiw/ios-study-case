@@ -20,7 +20,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     var subCategories: [Category] = [Category]();
     
     var contents: [String] = ["banner", "breadcrumb", "subcategory", "product"];
-    var canShowMore: Bool = true;
+    var isLessMore: Bool = true;
     
     // MARK: - View Did Load
     
@@ -52,28 +52,8 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         subCategories.append(Category(id: 5, name: "sub category 777"));
         subCategories.append(Category(id: 5, name: "sub catee 8"));
         subCategories.append(Category(id: 5, name: "sub cat 9"));
-//        subCategories.append(Category(id: 5, name: "sub cat 10 lhooo .."));
+        subCategories.append(Category(id: 5, name: "sub cat 10 lhooo .."));
         addShowOrLessMore(self.tableView.frame.width);
-    }
-    
-    //MARK: - Update NavBar
-    override func viewWillAppear(_ animated: Bool) {
-        updateNavBar()
-    }
-    
-    func updateNavBar() {
-        guard let navbar = navigationController?.navigationBar else {
-            fatalError("VCSubCategory| Navigation controller does not exist in VCSubCategory");
-        }
-        
-//        guard let navbarColor = UIColor(hexString: colorHexCode) else {fatalError("Navbar color from category must not be null!")}
-//
-//        navbar.barTintColor = navbarColor;
-//        navbar.tintColor = ContrastColorOf(navbarColor, returnFlat: true);
-//        navbar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : ContrastColorOf(navbarColor, returnFlat: true) ]
-//
-//        searchBar.barTintColor = navbarColor;
-        
     }
     
     // MARK: - Table Configurations
@@ -84,14 +64,22 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         } else if (contents[indexPath.row] == "breadcrumb") {
             return 43.5;
         } else if (contents[indexPath.row] == "subcategory") {
-            let divider = CGFloat(subCategories.count) / (self.tableView.frame.width / 175);
-            if (divider > 2) {
-                return 150.0
-            } else if (divider > 1) {
-                return 100.0
+            let div = CGFloat(subCategories.count) / CGFloat(Int(self.tableView.frame.width / 175));
+//            print("VCSubCategory: div: \(div)");
+            if (isLessMore) {
+                if (div > 2) {
+                    return 150.0
+                } else if (div > 1) {
+                    return 100.0
+                } else {
+                    return 50.0
+                }
             } else {
-                return 50.0
+                let subtract = Int((div - 3).rounded(.up));
+//                print("VCSubCategory: ll: \(subtract)");
+                return CGFloat( 150 + ( subtract * 50 ) );
             }
+            
         } else if (contents[indexPath.row] == "show_hide_more") {
             return 44.0;
         } else {
@@ -123,7 +111,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
             cell = cellSubCategory;
         } else if (contents[indexPath.row] == "show_hide_more") {
             cell = tableView.dequeueReusableCell(withIdentifier: "cellHideShowMoreSubCategory", for: indexPath);
-            cell.textLabel?.text = canShowMore ? "Show More" : "Show Less";
+            cell.textLabel?.text = isLessMore ? "Show More" : "Show Less";
             cell.textLabel?.textColor = UIColor.purple;
             cell.textLabel?.textAlignment = .center;
         } else {
@@ -140,7 +128,20 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (contents[indexPath.row] == "show_hide_more") {
             print("VCSubCategory| show or hide more...");
+            showOrHideMore();
         }
+    }
+    
+    // MARK: - Show or Hide More
+    func showOrHideMore() {
+        isLessMore = !isLessMore;
+        super.tableView(tableView, heightForRowAt: IndexPath(row: 2, section: 0));
+
+//        canShowMore = !canShowMore;
+        tableView.beginUpdates();
+        tableView.reloadRows(at: [IndexPath(row: 2, section: 0),
+                                  IndexPath(row: 3, section: 0)], with: .automatic)
+        tableView.endUpdates();
     }
     
     // MARK: - Collection View Configuration
@@ -241,26 +242,32 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
         addShowOrLessMore(size.width);
-        
-//        self.tableView.reloadData();
     }
     
     // MARK: - Add Show Or Less More
     func addShowOrLessMore(_ width: CGFloat) {
 //        print("VCSubCategory| width table: \(width)");
 //        print("VCSubCategory| count: \(subCategories.count)");
-        let div = CGFloat(subCategories.count) / (width / 175);
+        let div = CGFloat(subCategories.count) / CGFloat(Int(width / 175));
 //        print("VCSubCategory| div: \(div)");
         
-        if (div > 3 && contents[3] != "show_hide_more") {
+        if (div > 3) {
 //            print("VCSubCategory| inserting show/hide more");
-            contents.insert("show_hide_more", at: 3);
-            tableView.reloadData();
+            if (contents[3] != "show_hide_more") {
+                contents.insert("show_hide_more", at: 3);
+                tableView.beginUpdates();
+                tableView.insertRows(at: [IndexPath(row: 3, section: 0)], with: .automatic);
+                tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
+                tableView.endUpdates();
+            }
         } else {
             if (contents[3] == "show_hide_more") {
 //                print("VCSubCategory| removing show/hide more");
                 contents.remove(at: 3)
-                tableView.reloadData();
+                tableView.beginUpdates();
+                tableView.deleteRows(at: [IndexPath(row: 3, section: 0)], with: .automatic)
+                tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .automatic);
+                tableView.endUpdates();
             }
         }
     }
