@@ -161,10 +161,20 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         if (collectionView.tag == 1) {
 //            print("width: \(collectionView.frame.width)");
 //            print("div 2: \(collectionView.frame.width / 2)");
-            return CGSize(width: (collectionView.frame.width / 2), height: 50);
+            return CGSize(width: (collectionView.frame.width / 2) - 20, height: 50);
         }
         
         return CGSize(width: 0.0, height: 0.0);
+    }
+    
+    // MARK: - Did Select Collection View
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if (collectionView.tag == 0) {
+            let breadcrumb = breadcrumbs[indexPath.row];
+            if (breadcrumb.id == "home") {
+                _ = navigationController?.popViewController(animated: true);
+            }
+        }
     }
     
     //MARK: - Load Sub Categories

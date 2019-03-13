@@ -20,18 +20,21 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2m4-5v-lwQ">
-                        <rect key="frame" x="0.0" y="0.0" width="130" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="140" height="50"/>
                         <color key="backgroundColor" red="0.58105844259999995" green="0.12855249639999999" blue="0.57453137639999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="130" id="OL5-W8-UJ5"/>
+                            <constraint firstAttribute="width" constant="140" id="jV2-oU-JXa"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3l-X8-HLR">
-                        <rect key="frame" x="130" y="0.0" width="20" height="50"/>
+                        <rect key="frame" x="140" y="0.0" width="10" height="50"/>
                         <color key="backgroundColor" red="0.098039215690000001" green="0.1647058824" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="10" id="PQM-hj-YRL"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -39,14 +42,14 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="2m4-5v-lwQ" secondAttribute="bottom" id="FBG-lU-fPJ"/>
-                <constraint firstItem="g3l-X8-HLR" firstAttribute="leading" secondItem="2m4-5v-lwQ" secondAttribute="trailing" id="FOo-Wp-FzE"/>
-                <constraint firstItem="2m4-5v-lwQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Hlp-B5-mdc"/>
-                <constraint firstAttribute="trailing" secondItem="g3l-X8-HLR" secondAttribute="trailing" id="JeD-lT-j9M"/>
-                <constraint firstItem="g3l-X8-HLR" firstAttribute="leading" secondItem="2m4-5v-lwQ" secondAttribute="trailing" id="RDy-p4-GBb"/>
-                <constraint firstAttribute="bottom" secondItem="g3l-X8-HLR" secondAttribute="bottom" id="YFz-5o-mkl"/>
-                <constraint firstItem="2m4-5v-lwQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="eIG-mY-fYE"/>
-                <constraint firstItem="g3l-X8-HLR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="gD6-KP-s3A"/>
+                <constraint firstItem="2m4-5v-lwQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="4HF-MV-4rj"/>
+                <constraint firstAttribute="trailing" secondItem="g3l-X8-HLR" secondAttribute="trailing" id="IYf-qd-0a3"/>
+                <constraint firstItem="g3l-X8-HLR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JtO-xR-5Rr"/>
+                <constraint firstAttribute="bottom" secondItem="2m4-5v-lwQ" secondAttribute="bottom" id="KCf-w0-nqe"/>
+                <constraint firstItem="2m4-5v-lwQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="V6Y-Wl-DB5"/>
+                <constraint firstItem="g3l-X8-HLR" firstAttribute="leading" secondItem="2m4-5v-lwQ" secondAttribute="trailing" id="ao4-Nd-AFB"/>
+                <constraint firstAttribute="bottom" secondItem="g3l-X8-HLR" secondAttribute="bottom" id="b1j-ng-e1g"/>
+                <constraint firstItem="g3l-X8-HLR" firstAttribute="leading" secondItem="2m4-5v-lwQ" secondAttribute="trailing" id="hQ2-HE-nWW"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
